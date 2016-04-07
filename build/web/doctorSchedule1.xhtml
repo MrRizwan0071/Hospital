@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./AfLog.xhtml">
+            <ui:define name="left">
+                <f:view>
+                    <h:form>  
+                        <p:growl id="messages" autoUpdate="true"/>  
+                        <p:panel header="Admin panel">
+                            <p:menu style="width:125px"> 
+                                <p:submenu label="Admin" icon="ui-icon-refresh">
+                                    <p:menuitem value="Registration User" outcome="registrationAll.xhtml"/>
+                                    <p:menuitem value="Doctor Registration" outcome="doctor_registration.xhtml"/>
+                                    <p:menuitem value="Test Entry" outcome="testEntry1.xhtml"/>
+                                    <p:menuitem value="Department Entry" outcome="departmentEntry.xhtml"/>
+                                    <p:menuitem value="Doctor Schedule" outcome="doctorSchedule1.xhtml"/>
+                                    <p:menuitem value="View Doctor Schedule" outcome="viewDoctorSchedule.xhtml"/>
+                                    <p:menuitem value="View Users" outcome="showUsers.xhtml"/>
+                                    <p:menuitem value="Show Doctor info" outcome="ShowDoctorInfo.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                            <p style="background-color: yellow; width:125px; height:30px" align="center" > <h:link value="Back page" outcome="AfLog.xhtml"/></p>
+                        </p:panel>
+                    </h:form>   
+                </f:view>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="form2">
+                    <center>
+                        <p:growl id="messages" showDetail="true"/>
+                        <p:panel style="width: 450px">
+                            <table cellpadding="10px">
+                                <th colspan="2" bgcolor="purple"><h1>Doctor Schedule</h1></th>
+                                <tr>
+                                    <td><p:outputLabel value="Doctor name"/></td>
+                                    <td><p:selectOneMenu id="doctor_name" style="width:160px;" value="#{doctorSchedule.doctor_name}">
+                                            <f:selectItem itemLabel="--Select--"/>
+                                            <f:selectItems value="#{doctorSchedule.doctorName}"/>
+                                            <f:ajax event="change" listener="#{doctorSchedule.selectDctorName()}" render="doctor_name"/>
+                                        </p:selectOneMenu></td>
+                                </tr>
+
+                                <tr>
+                                    <td> <p:outputLabel value="Doctor Schedule"/></td>
+                                    <td><p:selectOneMenu value="#{doctorSchedule.doctor_sch_time}" id="doctor_sch_time" style="width: 160px" editable="true" >
+                                            <f:selectItem itemLabel="--Select--"/>
+                                            <f:selectItems value="#{doctorSchedule.doctor_sch}"/>
+                                        </p:selectOneMenu></td>
+                                </tr>
+                                <tr>
+                                    <td> <p:outputLabel value="Doctor Schedule Day"/></td>
+                                    <td> 
+                                        <p:selectOneMenu value="#{doctorSchedule.doctor_sch_day}" id="doctor_sch_day" style="width: 160px" editable="true" >
+                                            <f:selectItem itemLabel="--Select--"/>
+                                            <f:selectItems value="#{doctorSchedule.doctor_sch_da}"/>
+                                        </p:selectOneMenu></td>
+                                </tr>
+                                <tr>
+                                    <td> <p:outputLabel value="Doctor Fee"/></td>
+                                    <td><p:inputText id="doctor_fee" value="#{doctorSchedule.doctor_fee}"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">  <p:commandButton value="Save" action="#{doctorSchedule.save()}" update="messages"/></td>
+                                </tr>
+                            </table>
+                        </p:panel>
+
+                    </center>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

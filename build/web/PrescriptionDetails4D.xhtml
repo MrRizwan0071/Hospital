@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./DoctorTam.xhtml">
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <center>
+                            <p:panel style="width: 550px">
+                            <table cellpadding="5px">
+                                <th  colspan="2" bgcolor="purple"><h1>Patient's Prescription</h1></th>
+                                <tr>
+                                    <td><p:outputLabel value="Patient ID"/></td>
+                                    <td><p:inputText id="patient_id" value="#{prescription4D.patient_id}" autocomplete="true">
+                                            <p:ajax event="keyup" listener="#{prescription4D.patientPrescription()}" update="date,patient_name" /></p:inputText></td>
+                                </tr>
+                                <tr>
+                                    <td> <p:outputLabel value="Patient name"/></td>
+                                    <td><p:outputLabel id="patient_name" value="#{prescription4D.patient_name}"/></td>
+                                </tr>
+                                 <tr>
+                                    <td><p:outputLabel value="Select Date"/></td>
+                                    <td><p:selectOneMenu id="date" style="width:160px;" value="#{prescription4D.date}">
+                            <f:selectItem itemLabel="--Select--" itemValue=""/>
+                            <f:selectItems value="#{prescription4D.comDate}" var="dt" itemLabel="#{dt.value}" itemValue="#{dt.value}"/>
+                            <f:ajax event="change" listener="#{prescription4D.allSchedule()}" render="@form"/>
+                        </p:selectOneMenu></td>
+                                </tr>
+                            </table>
+                            </p:panel>
+                        </center>
+                         <center>
+                <p:panel style="width: 550px">
+                    <p:dataTable value="#{prescription4D.tableData}" id="dttbl" var="items">
+                     <p:column>
+                         <f:facet name="header">Medicine Name</f:facet>
+                         #{items.med_name}
+                         
+                     </p:column>
+                     <p:column>
+                         <f:facet name="header">Dose</f:facet>
+                         #{items.dose}
+                     </p:column>
+                     <p:column>
+                         <f:facet name="header">Taking Schedule</f:facet>
+                        #{items.schedule}
+                     </p:column>                  
+                 </p:dataTable>
+                    </p:panel>
+                     </center>
+                    </h:form>
+                </f:view>              
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

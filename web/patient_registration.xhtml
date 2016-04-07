@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./PatientTam.xhtml">
+
+            <ui:define name="content">
+                <center><h:form style="font-size: 12pt;font-style: italic">Patient Registration</h:form></center>
+                <f:view>
+                    <h:form id="pr" style="margin-top: 20px">
+                        <p:growl id="rmg" showDetail="true"/>
+                        <center> <h:panelGrid columns="2" style=" font-size:9pt;text-align: right;"  id="vsg" cellpadding="1px" cellspacing="1px" border="1" >
+                                <h:outputLabel value="Patient ID:"/>
+                                <p:inputText value="#{patient_infos.patient_id}" id="grow" style=" width: 260px;" > 
+                                    <p:ajax event="keyup" listener="#{patient_infos.register()}" update="pname,pc,pg" />
+                                    <p:tooltip for="grow" value="Enter your id" showEffect="clip" hideEffect="explode" />
+                                </p:inputText>
+                                <h:outputLabel value="Patient Name:"/>
+                                <p:inputText value="#{patient_infos.name}" id="pname" style=" width: 260px;"/>
+                                <h:outputLabel value="Contact No:"/>
+                                <h:inputText value="#{patient_infos.contact_no}" id="pc" style=" width: 260px;"/>
+                                <h:outputLabel value="Gender:"/>
+                                <h:inputText value="#{patient_infos.gender}" id="pg" style=" width: 260px;"/>                               
+                                <h:outputLabel value="Patient Address:"/>
+                                <p:inputTextarea value="#{patient_infos.address}" required="true" requiredMessage="Address please" style=" width: 260px;"/>
+                                <h:outputLabel value="Maritual Status:"/>
+                                <p:selectOneMenu value="#{patient_infos.maritul_status}"  id="list"  editable="true" style=" width: 260px;" >  
+                                    <f:selectItems value="#{patient_infos.meritulStatusCombo}"/>             
+                                </p:selectOneMenu> 
+                                <h:outputLabel value="Date of birth:"/>
+                                <p:calendar value="#{patient_infos.birthdate}"  id="popupCal"  effect="explode" pattern="dd-MM-yyyy" navigator="true" style=" width: 270px;"/>
+                                <h:outputLabel value="Email:"/>
+                                <p:inputText value="#{patient_infos.email}" required="true" requiredMessage="Email please" style=" width: 260px;"/>
+
+                                <h:outputLabel value="Blood Group:"/>
+                                <p:inputText value="#{patient_infos.bloodgroup}" style=" width: 260px;"/>
+                                <h:outputLabel value="Second Contact:"/>
+                                <h:inputTextarea value="#{patient_infos.second_contact}" style=" width: 260px;"/>
+                                <h:outputLabel value="Symptom:"/>
+                                <p:inputText value="#{patient_infos.symptom}" style=" width: 260px;"/>
+
+                                <p:commandButton value="Back" action="#{patient_infos.backRagi()}"/>
+                                <p:commandButton value="Save" action="#{patient_infos.save()}" update=":pr:rmg,:pr:vsg" icon="ui-icon-disk"/>
+
+                            </h:panelGrid>
+                        </center>
+
+
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplateForHealthCare.xhtml">
+
+        
+            <ui:define name="content">
+                  <h:form id="form1">
+            <center>
+                <p:growl id="messages" showDetail="true"/>
+               
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Date"/>
+                        <p:outputLabel id="date" value="#{diagnosis.dts}"/>
+
+                        <p:outputLabel value="Patient name"/>
+                        <p:outputLabel id="patient_name" value="#{diagnosis.patient_name}"/>
+                        <p:outputLabel  value="Doctor name"/>
+                        <p:outputLabel id="doctor_name" value="#{diagnosis.doctor_name}"/>
+
+                        <p:outputLabel value="Test"/>
+                        <p:selectOneMenu value="#{diagnosis.test_name}" id="test_name" style="width: 160px" editable="true" >
+                            <f:selectItems itemLabel="--Select--"/>
+                            <f:selectItems value="#{diagnosis.comBobox}"/>
+                            <f:ajax event="change" listener="#{diagnosis.selctinfo()}" render="test_name"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Test Date"/>
+                        <p:calendar id="test_date" value="#{diagnosis.test_date}" effect="explode" pattern="dd-MM-yyyy"></p:calendar>
+                        <p:outputLabel value="Report"/>
+                        <p:inputTextarea id="textarea" value="#{diagnosis.report}"/>
+                        <p:outputLabel value="Report Date"/>
+                        <p:calendar id="report_date" value="#{diagnosis.report_date}" effect="explode" pattern="dd-MM-yyyy"></p:calendar>
+                        <f:facet name="footer">
+                            <h:commandButton value="Add Test" action="#{diagnosis.addAction()}"/>
+                        </f:facet>
+                    </p:panelGrid>
+                    <p:spacer height="30px;"/>
+                    <p:dataTable value="#{diagnosis.orderList}" var="o"  widgetVar="50" editable="true">
+                        <f:facet name="header"> 
+                            Diagnosis  
+                        </f:facet>
+                        <p:ajax event="rowEdit" listener="#{diagnosis.onEdit}" update=":form1:messages" /> 
+                        <p:ajax event="rowEditCancel" listener="#{diagnosis.onCancel}" update=":form1:messages" />
+                        <p:column headerText="Test Name" style="width: 70px">
+                            <p:cellEditor> 
+                                <f:facet name="output"> 
+                                    <h:outputText value="#{o.test_name}" /> 
+                                </f:facet> 
+                                <f:facet name="input"> 
+                                    <p:inputText value="#{o.test_name}" style="width:100%"/> 
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Test Date" style="width: 50px">
+                            <p:cellEditor> 
+                                <f:facet name="output"> 
+                                    <h:outputText value="#{o.tstdt}" /> 
+                                </f:facet> 
+                                <f:facet name="input"> 
+                                    <p:inputText value="#{o.tstdt}" style="width:100%"/> 
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Report" style="width: 250px">                            
+                            <p:cellEditor> 
+                                <f:facet name="output"> 
+                                    <h:outputText value="#{o.report}" style="width: 100%"/> 
+                                </f:facet> 
+                                <f:facet name="input"> 
+                                    <p:inputTextarea value="#{o.report}" style="width:100%"/> 
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Report Date" style="width: 50px" >
+                            <p:cellEditor> 
+                                <f:facet name="output"> 
+                                    <h:outputText value="#{o.rptdt}" /> 
+                                </f:facet> 
+                                <f:facet name="input"> 
+                                    <p:inputText value="#{o.rptdt}" style="width:100%"/> 
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Options" style="width:50px"> 
+                            <p:rowEditor /> 
+                        </p:column>
+                    </p:dataTable>
+                    <p:commandButton value="Save " action="#{diagnosis.save()}" update="messages"/>
+              
+            </center>
+        </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

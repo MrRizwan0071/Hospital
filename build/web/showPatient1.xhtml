@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./DoctorTam.xhtml">
+<ui:define name="content">
+              <center>
+   
+            <h:form>
+                <h:panelGrid columns="2" style=" alignment-adjust: middle">
+                    <h:outputLabel value="Patient ID:"/>
+                    <h:inputText value="#{patient_infos.patient_id}" style=" width: 200px;"> 
+                        <p:ajax event="keyup" listener="#{patient_infos.patientInfo()}" update="bd,ms,symptom,pname,pc" />
+                    </h:inputText>
+                    
+                    <h:outputLabel value="Patient Name:"/>
+                    
+                    <h:outputText value="#{patient_infos.name}" id="pname" style=" width: 200px;"/>
+                     <h:outputLabel value="Contact No:"/>
+                     <h:outputText value="#{patient_infos.contact_no}" id="pc" style=" width: 200px;"/>
+                     
+                    <h:outputLabel value="Maritual Status:"/>
+                    <p:outputLabel value="#{patient_infos.maritul_status}"   style=" width: 200px;" id="ms"/>  
+                        
+
+                    <h:outputLabel value="Date of birth:"/>
+                    <h:outputLabel value="#{patient_infos.birthdate}" id="bd" style=" width: 210px;" />
+                     <h:outputLabel value="Symptom:"/>
+                     <h:outputLabel value="#{patient_infos.symptom}" style=" width: 200px;" id="symptom"/>
+                    
+                     
+                     <p:commandButton value="Back" action="#{patient_infos.backRagi()}"/>
+                    <p:commandButton value="Test" action="#{patient_infos.save()}"/>
+
+                </h:panelGrid>
+                   
+                
+            </h:form>
+      
+        </center>
+            </ui:define>
+
+            <ui:define name="bottom">
+            <h:link outcome="FirstTam" value="Back"/><span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

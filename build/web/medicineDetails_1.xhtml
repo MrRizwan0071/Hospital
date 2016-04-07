@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+    <head> 
+
+
+    </head>
+
+    <body>
+
+        <ui:composition template="./PatientTam.xhtml">
+
+            <ui:define name="top">
+                <h:form style="font-size: 20pt;font-style: italic">E-HEALTH CARE AND PHARMACY MANAGEMENT SYSTEM</h:form>
+            </ui:define>
+
+            <ui:define name="left">
+                <p:panel style="background-color:#AFAFAF;width: 155px;height: 80px;border:10pt" >
+                    <h:link value="Patient " style="font-size: 15pt;border: 3pt" outcome="PatientTam.xhtml" /><br/>
+                    <h:link value="Assistant" outcome="PatientTam.xhtml" style="font-size: 15pt;" />
+                
+                </p:panel>
+                               <!--                                <h:link value="Patient Details" outcome="notificationBar.xhtml"/> <br/>-->
+
+
+
+            </ui:define>
+
+            <ui:define name="content">
+
+                <h:form id="ad"  style="width: auto; background-color: brown; height: 90px; font-style: italic;" >
+                    <p:growl id="grl" showDetail="true"/>
+                    <center><p:outputLabel value="Show Medicine Details" style="font-size: 35px; font-weight: bolder;"/></center>
+
+                </h:form>
+
+                <center> <h:form>
+
+                        <p:panelGrid columns="2">
+                            <f:facet name="header">Medicine </f:facet>
+                            <p:outputLabel value="Enter your Id"/>
+                            <p:inputText value="#{show_med.prescrip_id}"/>
+                            <f:facet name="footer">
+                                <p:commandButton value="Show Details" action="#{show_med.showMed()}" update=":ad:grl,:pn:panel"/>
+                            </f:facet>
+                        </p:panelGrid>
+
+                    </h:form></center>
+
+                <h:form><center>
+                        <p:spacer height="25px"/>                    
+                    </center></h:form>
+
+                <h:form id="pn">
+                    <center>                
+
+                        <h:dataTable  value="#{show_med.medicinepres}" var="item" border="2" id="panel">
+                            <h:column >
+                                <f:facet name="header">Medicine Name</f:facet>
+                                #{item.med_name}
+                            </h:column>
+
+                            <h:column >
+                                <f:facet name="header">Medicine Douses</f:facet>
+                                #{item.dos}
+                            </h:column>
+
+                            <h:column >
+                                <f:facet name="header">Douses Schedule</f:facet>
+                                #{item.dos_sch}
+                            </h:column>
+                            <h:column >
+                                <f:facet name="header">Prescrip Date</f:facet>
+                                #{item.date}
+                            </h:column>
+
+                        </h:dataTable>
+                    </center>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

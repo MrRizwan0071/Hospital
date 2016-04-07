@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./TemplateForHealthCare.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+            <h:form>
+                 <center>
+                    <table>
+                        <tr><th colspan="2">Update Vendor List</th></tr>
+                        <tr>
+                            <td><p:outputLabel value="Medicine Type"/></td>
+                            <td><p:inputText value="#{medicineListBean.med_type_name}"/></td>
+                            
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="Medicine Group Name"/></td>
+                            <td><p:inputText value="#{medicineListBean.med_group_name}"/></td>
+                          
+                        </tr>
+                       <tr>
+                            <td><p:outputLabel value="Vendor Name"/></td>
+                            <td><p:inputText value="#{medicineListBean.vandor_name}"/></td>
+                       
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="Medicine Name" /></td>
+                            <td><p:inputText value="#{medicineListBean.med_name}"/></td>
+                  
+                        </tr>
+                        <tr><th colspan="3"><p:commandButton value="Update" action="#{medicineListBean.update()}" ajax="false"/></th></tr>
+                        <tr><th colspan="3"><h:link value="Back" outcome="medicine_list.xhtml"/></th></tr>
+                    </table>
+                </center> 
+            </h:form> 
+        </f:view>
+
+            </ui:define>
+
+     
+        </ui:composition>
+
+    </body>
+</html>

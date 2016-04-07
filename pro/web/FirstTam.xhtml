@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+            <ui:insert name="top"><div class="head-logo">E-HEALTH CARE AND PHARMACY MANAGEMENT SYSTEM</div></ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">
+                <center>
+                    <p:spacer width="10%"/>
+                    <p:panel style="width: 220px" >
+                        <h:form style="width: 200px; font-size: 16px; alignment-adjust: after-edge">
+                            <h:link outcome="TemplateForHealthCare.xhtml" value="Admin"/><p></p>
+                    <h:link outcome="DoctorTam.xhtml" value="Doctor"/><p></p>
+                    <h:link outcome="PatientTam.xhtml" value="Patient"/><p></p>
+                    <h:link outcome="PharmacyTam.xhtml" value="Pharmacy"/><p></p>
+                    <h:link outcome="diagnosis1.xhtml" value="Diagnosis"/><p></p>
+                  
+                </h:form>
+                </p:panel>
+                </center>
+                </ui:insert>
+        </div>
+    <div id="bottom">
+        <ui:insert name="bottom" > <span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span> </ui:insert>
+        </div>
+    </h:body>
+
+</html>

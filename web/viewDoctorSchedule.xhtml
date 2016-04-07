@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./AfLog.xhtml">
+            <ui:define name="left">
+                <f:view>
+                    <h:form>  
+                        <p:growl id="messages" autoUpdate="true"/>  
+                        <p:panel header="Admin panel">
+                            <p:menu style="width:125px"> 
+                                <p:submenu label="Admin" icon="ui-icon-refresh">
+                                    <p:menuitem value="Registration User" outcome="registrationAll.xhtml"/>
+                                    <p:menuitem value="Doctor Registration" outcome="doctor_registration.xhtml"/>
+                                    <p:menuitem value="Test Entry" outcome="testEntry1.xhtml"/>
+                                    <p:menuitem value="Department Entry" outcome="departmentEntry.xhtml"/>
+                                    <p:menuitem value="Doctor Schedule" outcome="doctorSchedule1.xhtml"/>
+                                    <p:menuitem value="View Doctor Schedule" outcome="viewDoctorSchedule.xhtml"/>
+                                    <p:menuitem value="View Users" outcome="showUsers.xhtml"/>
+                                    <p:menuitem value="Show Doctor info" outcome="ShowDoctorInfo.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                            <p style="background-color: yellow; width:125px; height:30px" align="center" > <h:link value="Back page" outcome="AfLog.xhtml"/></p>
+                        </p:panel>
+                    </h:form>   
+                </f:view>
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <center>
+                            <p:panel style="width: 450px">
+                                <table cellpadding="10px">
+                                    <th colspan="2" bgcolor="purple"><h1>View Doctor Schedule</h1></th>
+                                    <tr>
+                                        <td align="right"><p:outputLabel value="Select Doctor :"/></td>
+                                        <td><p:selectOneMenu id="doctor_name" style="width:160px;" value="#{viewDoctorSchedule.doctor_name}">
+                                                <f:selectItem itemLabel="--Select--" itemValue=""/>
+                                                <f:selectItems value="#{viewDoctorSchedule.doctorName}" var="doctor" itemLabel="#{doctor.value}" itemValue="#{doctor.value}"/>
+                                                <f:ajax event="change" listener="#{viewDoctorSchedule.allSchedule()}" render="@form"/>
+                                            </p:selectOneMenu></td>
+                                    </tr>
+                                </table>
+                            </p:panel>
+                        </center>
+
+                        <center>
+                            <p:panel style="width: 450px">
+                                <p:dataTable value="#{viewDoctorSchedule.tableData}" id="dttbl" var="items">
+                                    <p:column>
+                                        <f:facet name="header">Schedule Day</f:facet>
+                                            #{items.doctor_sch_day}
+
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">Schedule Time</f:facet>
+                                            #{items.doctor_sch_time}
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">Doctor Fee</f:facet>
+                                            #{items.doctor_fee}
+                                    </p:column>                  
+                                </p:dataTable>
+                            </p:panel>
+                        </center>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

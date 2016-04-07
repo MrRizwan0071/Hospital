@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplateForHealthCare.xhtml">
+
+      <ui:define name="content">
+                    <f:view>
+            <h:form style="background-color: bisque">
+                <center>
+                    <table>
+                        <tr><th colspan="2">Update Test</th></tr>
+                        <tr>
+                            <td><p:outputLabel value="Test Name"/></td>
+                            <td><p:inputText value="#{testEntry.test_name}"/></td>
+                            
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="Test Cost"/></td>
+                            <td><p:inputText value="#{testEntry.test_cost}"/></td>
+                            
+                        </tr>
+                      
+                       <tr>
+                            <td><p:outputLabel value="Test Type"/></td>
+                            <td><p:inputText value="#{testEntry.test_type}"/></td>
+                       
+                        </tr>
+                       
+                        <tr><th colspan="3"><p:commandButton value="Update" action="#{testEntry.update()}" ajax="false"/></th></tr>
+                        <tr><th colspan="3"><h:link value="Back" outcome="testEntry.xhtml"/></th></tr>
+                    </table>
+                </center> 
+            </h:form> 
+        </f:view>
+            </ui:define>
+
+            <ui:define name="bottom">
+                 <h:link outcome="FirstTam" value="Back"/><span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

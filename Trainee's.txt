@@ -1,0 +1,21 @@
+Name 	: MD. SIRATUL ISLAM     (Group leader)   Admin part and other problems. 
+ID 	: 1141348
+
+
+Name 	: ABDULLAH AL GALEB    		Pharmacy part
+ID 	: 1129470
+
+
+Name 	: A. K. M. ASHRAFUL ALAM        Doctor part   
+ID 	: 1140189
+
+
+
+
+Name 	: FIROJ KABIR                   Patient part 
+ID 	: 1137889
+
+
+
+Name 	: ZIAUR RAHMAN                  Diagnosis part and all pharmacy madicine entry
+ID 	: 1141688

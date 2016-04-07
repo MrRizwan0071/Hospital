@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./PharmacyTam.xhtml">
+
+           
+
+            <ui:define name="content">
+                 <h:form style="height: 500px; background-color: burlywood; width: auto;">
+            
+                     <p:panelGrid columns="4">
+                         <f:facet name="header">Medicine Stock</f:facet>
+                <p:outputLabel value="Search By Medicine Name :" style="font-size: 20px;"/>
+               
+                <p:selectOneMenu value="#{stockSupport.med_name}" filter="true" filterMatchMode="startsWith" effect="fade">
+                    <f:selectItems value="#{stockSupport.medNameCombo}"></f:selectItems>
+                  <f:ajax event="change" listener="#{stockSupport.selectMedName()}"  render="@form" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Search By Medicine Group :" style="font-size: 20px;"/>
+                
+                <p:selectOneMenu value="#{stockSupport.med_group}" filter="true" filterMatchMode="startsWith" effect="fade">
+                    <f:selectItems value="#{stockSupport.medGroupCombo}"></f:selectItems>
+                
+                    <f:ajax event="change" listener="#{stockSupport.selectMedGroup()}"  render="@form" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Search By Vendor :" style="font-size: 20px;"/>
+                
+                <p:selectOneMenu value="#{stockSupport.ven_name}" filter="true" filterMatchMode="startsWith" effect="fade">
+                    <f:selectItems value="#{stockSupport.vendorCombo}"></f:selectItems>
+                
+                    <f:ajax event="change" listener="#{stockSupport.selectVendor()}"  render="@form" />
+                </p:selectOneMenu>
+                
+                     </p:panelGrid>
+                 <center>
+                     <p:dataTable value="#{stockSupport.tableData}" id="dttbl" var="items" paginator="true" rows="10">
+                     <p:column>
+                         <f:facet name="header">Medicine Name</f:facet>
+                         #{items.med_name}
+                         
+                     </p:column>
+                     <p:column>
+                         <f:facet name="header">Medicine Group Name</f:facet>
+                         #{items.med_group}
+                     </p:column>
+                     <p:column>
+                         <f:facet name="header">Vendor Name</f:facet>
+                        #{items.ven_name}
+                     </p:column>
+                     <p:column >
+                         <f:facet name="header" >Quantity</f:facet>
+                         #{items.stock}
+                         
+                     </p:column>
+                    
+                 </p:dataTable>
+                  <!--   <h:link value="Back" outcome="../index.xhtml"/>-->
+                     </center>
+             
+               
+                
+            
+        </h:form>
+            </ui:define>
+
+           
+
+        </ui:composition>
+
+    </body>
+</html>

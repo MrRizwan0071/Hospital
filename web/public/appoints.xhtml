@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./PatientTam.xhtml">
+            <ui:define name="content">
+               <h:form id="ag" style="height: 500px; width: auto; background-color: cadetblue;" >
+                    <p:growl id="apg" showDetail="true" />
+                    <center>
+                        <table>
+                        <th colspan="2" bgcolor="purple" align="center"><h1>Doctor Appointment</h1></th>
+                    </table> 
+                        <p:spacer width="10px"/>
+                        <p:panelGrid columns="2" style="">
+
+                            <p:outputLabel value="Doctor Name :"/>
+                            <p:inputText value="#{managBean.name}"/>
+                            <p:outputLabel value="Doctor_Schedule :"/>
+                            <p:inputText value="#{managBean.time}"/>
+                            <p:outputLabel value="Patient Name:"/>
+                            <p:inputText value="#{managBean.p_name}"/>
+                            <p:outputLabel value="Gender"/>
+                            <p:selectOneRadio value="#{managBean.gender}" id="gender" required="true" requiredMessage="Please Select Gender">
+                                    <f:selectItem itemLabel="Male" itemValue="Male"/>
+                                    <f:selectItem itemLabel="Female" itemValue="Female"/>
+                                </p:selectOneRadio>
+                           
+                            <p:outputLabel value="Patient Cell Number :"/>
+                            <p:inputText value="#{managBean.phone}"/>
+                            <p:outputLabel value="Appoinment Date :"/>
+                            <p:calendar effect="explode" value="#{managBean.a_date}" pattern="dd/MM/yyyy" navigator="true"/>
+                            <p:button outcome="Searchdoctor.xhtml" value="GoBack" />     
+                            <p:commandButton id="effectsDialogButton" value="Register" onclick="dlg3.show();"  action="#{managBean.appoinment()}">  
+                                <!--                         <p:ajax update="msg"/>-->
+
+                            </p:commandButton>
+                        </p:panelGrid>
+                        <p:dialog id="msg" header="Effects" widgetVar="dlg3" height="100" width="200" position="400,100" showEffect="explode" hideEffect="bounce">  
+                            <h:outputText value="#{managBean.showid()}"  /> 
+                            <h:commandButton value="ok" action="Searchdoctor"/> 
+                        </p:dialog>  
+
+                    </center>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

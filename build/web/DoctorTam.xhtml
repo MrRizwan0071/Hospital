@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+          <div id="dv" align="center">
+                    <h:form>       
+                        <p>Welcome, #{loginBean.uname}</p>
+                        <p:commandButton action="#{loginBean.logout}" value="Logout"  ajax="true"></p:commandButton>
+                    </h:form></div>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                    <f:view>
+                        <h:form>  
+                            <p:growl id="messages" autoUpdate="true"/>  
+                            <p:panel header="Doctor panel">
+                                <p:menu style="width:125px"> 
+                                    <p:submenu label="Doctor" icon="ui-icon-refresh">
+                                        <p:menuitem value="Show Patient" outcome="doctor_show_patient1.xhtml"/>
+                                        <p:menuitem value="Patient Test" outcome="patient_test1.xhtml"/>
+                                        <p:menuitem value="Pescribe Patient" outcome="patientPescribe1.xhtml"/> 
+                                        <p:menuitem value="Show Patient Reports" outcome="Report_view.xhtml"/>
+                                        <p:menuitem value="Show Prescription" outcome="PrescriptionDetails4D.xhtml"/>
+                                    </p:submenu>
+                                </p:menu>
+                            </p:panel>
+                        </h:form>   
+                    </f:view>
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content"></ui:insert>
+            </div>
+        </div>
+        <div id="bottom">
+            <ui:insert name="bottom"><h:link outcome="AfLog" value="Back"/><span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span></ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

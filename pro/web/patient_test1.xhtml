@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./DoctorTam.xhtml">
+<ui:define name="content">
+                 <h:form id="form1">
+            <center>
+                <p:growl id="messages" showDetail="true"/>
+               
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Date"/>
+                        <p:calendar value="#{patientTest.date}" effect="explode" pattern="dd-MM-yyyy"></p:calendar>
+                        
+                        <p:outputLabel value="Patient Id"/>
+                         <p:inputText id="patient_id" value="#{patientTest.patient_id}">
+                             <p:ajax event="keyup" listener="#{patientTest.patientSelect()}" update="patient_name doctor_name" />
+                         </p:inputText>
+                         
+                        <p:outputLabel value="Patient name"/>
+                        <p:outputLabel id="patient_name" value="#{patientTest.patient_name}"/>
+                        
+                        <p:outputLabel  value="Doctor name"/>
+                        <p:outputLabel id="doctor_name" value="#{patientTest.doctor_name}" />
+                        
+                        <p:outputLabel  value="Test Name"/>
+                        <p:selectOneMenu value="#{patientTest.test_name}" id="med_type_name" style="width: 160px" filter="true" filterMatchMode="StartsWith" effect="fade" >
+                            <f:selectItems itemLabel="--Select--"/>
+                            <f:selectItems value="#{patientTest.comBobox}"/>
+                            <f:ajax event="change" listener="#{patientTest.selctinfo()}" render="med_type_name"/>
+                        </p:selectOneMenu>
+
+                        <f:facet name="footer">
+                            <h:commandButton value="Add Test" action="#{patientTest.addAction()}"/>
+                        </f:facet>
+                    </p:panelGrid>
+                    <p:spacer height="30px;"/>
+                    <p:dataTable value="#{patientTest.orderList}" var="o"  widgetVar="50" style="width:450px;" editable="true">
+                        <f:facet name="header"> 
+                            Test List 
+                        </f:facet>
+                        <p:ajax event="rowEdit" listener="#{patientTest.onEdit}" update=":form1:messages" /> 
+                        <p:ajax event="rowEditCancel" listener="#{patientTest.onCancel}" update=":form1:messages" />
+                        <p:column>
+                            <f:facet name="header"> 
+                                <h:outputText value="Test Name" /> 
+                            </f:facet>
+                            <p:cellEditor> 
+                                <f:facet name="output"> 
+                                    <h:outputText value="#{o.test_name}" /> 
+                                </f:facet> 
+                                <f:facet name="input"> 
+                                    <p:inputText value="#{o.test_name}" style="width:100%"/> 
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+
+
+                        <p:column headerText="Options" style="width:50px"> 
+                            <p:rowEditor /> 
+                        </p:column>
+                       
+                    </p:dataTable>
+                    <p:commandButton value="save" action="#{patientTest.save()}" update="messages"/>
+           
+            </center>
+        </h:form>
+
+            </ui:define>
+
+            <ui:define name="bottom">
+             <h:link outcome="FirstTam" value="Back"/><span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

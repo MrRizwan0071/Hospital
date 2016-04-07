@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./PharmacyTam.xhtml">
+
+
+
+            <ui:define name="content">
+                <f:view>
+
+                    <center>
+                        <h:form>
+                            <h1><font color="black">Sale Report</font></h1>
+                            <p:panelGrid columns="5">
+                                <p:outputLabel value="From Date" style="margin-top: 200px;"/>
+
+                                <p:calendar effect="explode" value="#{saleRepotr.fromDate}" pattern="dd/MM/yyyy" onchange="#{purReport.selectDate()}">
+                                
+                                </p:calendar>
+                                <p:outputLabel value="To Date" style="margin-top: 200px;"/>
+
+                                <p:calendar effect="explode" value="#{saleRepotr.toDate}" pattern="dd/MM/yyyy">
+                                   <!-- <f:ajax event="dateSelect" listener="#{saleRepotr.selectDate()}"  render="@form" />-->
+                                
+                                </p:calendar>
+                                  <h:commandButton value="Show" action="#{saleRepotr.selectDate()}">
+                                
+                                </h:commandButton>
+
+
+                            </p:panelGrid>
+
+                            <p:spacer height="30px;"/> 
+                            <p:dataTable value="#{saleRepotr.tableData}" var="o" >
+                                <f:facet name="header"> 
+                                    Sale Report 
+                                </f:facet>
+                                
+                                <p:column width="42px">
+                                    <f:facet name="header"> 
+                                        <h:outputText value="Purchase Date" /> 
+                                    </f:facet>
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.purDate}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.purDate}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column>    
+
+                                <p:column width="42px">
+                                    <f:facet name="header"> 
+                                        <h:outputText value="Medicine Name" /> 
+                                    </f:facet>
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.med_name}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.med_name}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Medicine Group" width="35px">
+
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.med_group}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.med_group}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column>
+
+
+
+
+                                <p:column headerText="purchase Price" width="40px">
+
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.price}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.price}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column>  
+                                <p:column headerText="Quantity" width="40px">
+
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.amount}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.amount}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column>  
+
+                            </p:dataTable>
+
+
+
+
+
+                        </h:form>
+
+                    </center>
+
+                </f:view>
+
+
+
+
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

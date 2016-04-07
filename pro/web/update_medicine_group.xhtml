@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplateForHealthCare.xhtml">
+
+        
+            <ui:define name="content">
+               <f:view>           
+            <center>
+              <h:form>
+                  <table border="1">
+                      <tr>
+                        <th colspan="2"> Update Medicine Group</th>   
+                      </tr>
+                     <tr>
+                         <td><p:outputLabel value="Medicine Group Name"></p:outputLabel></td>   
+                         <td><p:inputText value="#{medicineGroupBean.med_group_name}"></p:inputText></td>
+                      </tr>
+                     <tr>
+                         <td><p:outputLabel value="Medicine Group Description"></p:outputLabel></td>   
+                         <td><p:inputText value="#{medicineGroupBean.med_group_description}"></p:inputText></td>
+                      </tr>
+                      <tr>
+                          <th colspan="2"> <p:commandButton value="Update" action="#{medicineGroupBean.update()}"></p:commandButton></th>   
+                      </tr>
+                      <tr>
+                          <th colspan="2"> <h:link value="Back" outcome="medicine_group.xhtml"/></th>   
+                      </tr>
+                  </table>
+               
+            </h:form>   
+                
+            </center>
+           
+        </f:view>
+            </ui:define>
+
+           
+        </ui:composition>
+
+    </body>
+</html>

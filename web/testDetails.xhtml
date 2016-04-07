@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./DiagnosisTam.xhtml">
+
+        
+            <ui:define name="content">
+               <f:view>
+            <c:set value="The field is empty" var="msg"/>
+              
+            <h:form style="background-color: bisque">
+                <center>
+                    <h1><font color="black">Test Cost and Details</font></h1>
+                   
+                </center> 
+            </h:form> 
+            <p:spacer width="40px"/>
+            <h:form >
+                 <center>
+                     <p:dataTable value="#{testEntry.allData}" var="item" paginator="true" rows="10" style="width: 550px">
+                         <p:column filterBy="#{item.test_name}">
+                         <f:facet name="header">Test Name</f:facet>
+                         #{item.test_name}
+                     </p:column>
+                         <p:column>
+                         <f:facet name="header">Test Type</f:facet>
+                         #{item.test_type}
+                     </p:column>
+                         <p:column>
+                         <f:facet name="header">Test Cost</f:facet>
+                         #{item.test_cost}
+                     </p:column>
+<!--                     <p:column >
+                         <f:facet name="header" >Update</f:facet>
+                         <p:commandLink value="√" action="#{testEntry.goUpdate()}">
+                             <f:setPropertyActionListener target="#{testEntry}" value="#{item}"/>
+                         </p:commandLink>
+                     </p:column>
+                     <p:column >
+                         <f:facet name="header" >Delete</f:facet>
+                         <p:commandLink value="×" action="#{testEntry.deleterow()}" ajax="false">
+                             <f:setPropertyActionListener target="#{testEntry}" value="#{item}"/>
+                         </p:commandLink>
+                     </p:column>-->
+                 </p:dataTable>
+<!--                     <h:link value="Back" outcome="../index.xhtml"/>-->
+                     </center>
+             </h:form>
+        </f:view>
+            </ui:define>
+
+   </ui:composition>
+
+    </body>
+</html>

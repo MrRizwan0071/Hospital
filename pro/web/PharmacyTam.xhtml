@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top"><div class="head-logo">E-HEALTH CARE AND PHARMACY MANAGEMENT SYSTEM</div></ui:insert>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                  <h:form>  
+              
+    <p:growl id="messages" autoUpdate="true"/>  
+  
+    <p:panelMenu style="width:160px">  
+       
+        <p:submenu label="Pharmacy">  
+            <p:menuitem value="Pharmacy" ajax="false" >
+                <h:link value="Madicine Group" outcome="medicine_group1.xhtml"/><br/>
+                <h:link value="Madicine List" outcome="medicine_list1.xhtml"/><br/>
+               <h:link value="Madicine Type" outcome="medicine_type1.xhtml"/><br/>
+               <h:link value="Vendor List" outcome="vendor_list1.xhtml"/><br/>
+               <h:link value="Medicine Purchase" outcome="purchaseitem1.xhtml"/><br/>
+               <h:link value="Medicine Sale" outcome="medicine_sale1.xhtml"/><br/>
+               <h:link value="Medicine Stock" outcome="stock.xhtml"/><br/>
+               <h:link value="Purchase Report" outcome="purchase_report.xhtml"/><br/>
+               <h:link value="Sale Report" outcome="sale_report.xhtml"/><br/>
+            
+            </p:menuitem>
+            
+        </p:submenu>  
+       
+    </p:panelMenu>  
+  
+</h:form>    
+                  
+ 
+                    
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content"></ui:insert>
+            </div>
+        </div>
+        <div id="bottom">
+            <ui:insert name="bottom"><h:link outcome="FirstTam" value="Back"/><span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span></ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./TemplateForHealthCare.xhtml">
+
+            <ui:define name="content">
+                <h:form style="height: 500px; width: 600">
+                <p:dataTable value="#{patient_info.todayPatient}" var="o"  editable="true">
+                    <f:facet name="header"> 
+                        Todays Patient
+                    </f:facet>
+
+                    <p:column >
+                        <f:facet name="header">Patients ID    </f:facet>                     
+                            #{o.patient_id} 
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Patients Name    </f:facet>                     
+                           <h:commandLink value="#{o.name}" action="patientInfoD"/> 
+                    </p:column>
+
+
+
+                </p:dataTable>
+               </h:form>
+            </ui:define>
+ 
+ </ui:composition>
+
+    </body>
+</html>

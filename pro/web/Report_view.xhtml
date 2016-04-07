@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./DoctorTam.xhtml">
+
+            
+
+            <ui:define name="content">
+                <h:form style="height: 90px; width: auto; background-color: darkcyan;">
+            <center>  <p:outputLabel value="Patient's Report" style="font-size: 30px; font-style: italic; font-weight: bolder;"/></center>
+        </h:form >
+
+        <p:spacer height="60px"/>
+
+        <center><h:form>
+                <p:panelGrid columns="2">
+                    <f:facet name="header">Patient's Report</f:facet>                    
+                                      
+                    <p:outputLabel value="Enter Patient Id:"/>
+                    <p:inputText value="#{report.pat_id}"/>
+                    
+                    <f:facet name="footer">
+                        <center><p:commandButton value="Show Report" action="#{report.Port()}" update="repor" /></center>
+                    </f:facet>
+                </p:panelGrid>
+                <p:spacer height="20px;"/>
+
+                <h:dataTable var="ite" border="2" id="repor" value="#{report.Port()}" >
+                    <h:column>
+                        <f:facet name="header">Test Name</f:facet>
+                      #{ite.test}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Test Report</f:facet>
+                        #{ite.repo}
+                    </h:column>
+
+
+                    <h:column>
+                        <f:facet name="header">Report Date</f:facet>
+                        #{ite.date}
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            </center>
+            </ui:define>
+
+            
+
+        </ui:composition>
+
+    </body>
+</html>

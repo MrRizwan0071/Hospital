@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./DoctorTam.xhtml">
+
+            <ui:define name="content">
+                <h:form style="width: auto; height: 90px; background-color: tomato;">
+            <center><h1> Patient's Details</h1></center>
+        </h:form>
+        
+        <center>
+        <h:form>
+            <p:panelGrid columns="2">
+                <f:facet name="header">Patient's Details</f:facet>
+                <p:outputLabel value="Patient Id:"/>
+                <p:inputText value="#{patient_info.patient_id}"/>
+                
+                 <p:outputLabel value="Patient Name:"/>
+                 <p:inputText value="#{patient_info.name}"/>
+                
+                 <p:outputLabel value="Address:"/>
+                 <p:inputText value="#{patient_info.address}"/>
+                
+                 <p:outputLabel value="E-Mail"/>
+                 <p:inputText value="#{patient_info.email}"/>
+                
+                 <p:outputLabel value="Marital Status:"/>
+                 <p:inputText value="#{patient_info.maritul_status}"/>
+                
+                 <p:outputLabel value="Phone:"/>
+                 <p:inputText value="#{patient_info.contact_no}"/>
+                
+                 <p:outputLabel value="Blood Group:"/>
+                 <p:inputText value="#{patient_info.bloodgroup}"/>
+                
+                 <p:outputLabel value="Gender:"/>
+                 <p:inputText value="#{patient_info.gender}"/>
+                
+                 <p:outputLabel value="Symptom:"/>
+                 <p:inputText value="#{patient_info.symptom}"/>
+                
+                 <p:outputLabel value="Second Contact:"/>
+                 <p:inputText value="#{patient_info.second_contact}"/>
+            </p:panelGrid>
+        </h:form>
+            </center>
+        <center> <h:link value="Back" outcome="index.xhtml"/></center>
+            </ui:define>
+
+          
+
+        </ui:composition>
+
+    </body>
+</html>

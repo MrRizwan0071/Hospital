@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./TemplateForHealthCare.xhtml">
+            <ui:define name="content">
+                <f:view>
+
+                    <center>
+                        <h:form style="height: 500px; background-color: #AFAFAF;" >
+                            <p:growl id="messages" showDetail="true"/>
+
+                            <table border="0" style="float: right">
+
+                                <tbody>
+                                    <tr>
+                                        <td><img src="medical1.jpg" width="500" height="275" alt="medical1"/>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Medicine Sell Date" style="margin-top: 200px;"/>
+
+                                <p:calendar effect="explode" value="#{insert.s_date}" pattern="dd/MM/yyyy"/>
+
+                                <p:outputLabel value="Reference"/>
+                                <p:inputText value="#{insert.refer}"/>
+                                <p:outputLabel value="Medicine Name"/>
+                                <p:selectOneMenu value="#{insert.med_name}" id="med_name" effect="fade" style="width: 170px" filter="true" filterMatchMode="startsWith" >  
+                                    <f:selectItems value="#{insert.Combo()}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Medicine Group"/>
+                                <p:selectOneMenu value="#{insert.med_group}" filter="true" filterMatchMode="startsWith" effect="fade" style="width: 170px">  
+                                    <f:selectItems value="#{insert.ComboGro()}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Medicine Type"/>
+                                <p:selectOneMenu value="#{insert.med_type}" style="width: 170px" filter="true" filterMatchMode="startsWith" effect="fade">  
+                                    <f:selectItems value="#{insert.ComboType()}"/>
+                                    <f:ajax event="change" render="   " />
+
+                                </p:selectOneMenu>  
+                                <p:outputLabel value="Vendor Name"/>
+                                <p:selectOneMenu value="#{insert.vendor_name}" filter="true" filterMatchMode="startsWith" effect="fade" style="width: 170px">  
+                                    <f:selectItems value="#{insert.vendor()}"/>
+                                    <f:ajax event="change" render="   " />
+
+                                </p:selectOneMenu>  
+
+
+                                <p:outputLabel value="Medicine Quantity"/>
+                                <p:inputText value="#{insert.quan}"/>
+                                <p:outputLabel value="Price" />
+                                <p:inputText style="height: 15px" value="#{insert.amount}"/>
+                                <f:facet name="footer">
+                                    <center>
+                                        <h:commandButton value="Add"  id="d" action="#{insert.addAction()}" />
+                                    </center>
+                                </f:facet>
+                            </p:panelGrid>
+
+                            <p:spacer height="30px;"/> 
+                            <p:dataTable value="#{insert.orderList}" var="o"  widgetVar="50" style=" float: left; margin-left: 0px;"  editable="true">
+                                <f:facet name="header"> 
+                                    Order List 
+                                </f:facet>
+                                <p:ajax event="rowEdit" listener="#{insert.onEdit}" update=":form1:messages" /> 
+                                <p:ajax event="rowEditCancel" listener="#{insert.onCancel}" update=":form1:messages" />
+                                <!--                                    <p:column>
+                                                                        <f:facet name="header"> 
+                                                                            <h:outputText value="Reference" /> 
+                                                                        </f:facet>
+                                                                        <p:cellEditor> 
+                                                                            <f:facet name="output"> 
+                                                                                <h:outputText value="#{o.refer}" /> 
+                                                                            </f:facet> 
+                                                                            <f:facet name="input"> 
+                                                                                <p:inputText value="#{o.refer}" style="width:100%"/> 
+                                                                            </f:facet> 
+                                                                        </p:cellEditor>
+                                                                    </p:column>-->
+                                <p:column width="42px">
+                                    <f:facet name="header"> 
+                                        <h:outputText value="Medicine Name" /> 
+                                    </f:facet>
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.med_name}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.med_name}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Medicine Group" width="35px">
+
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.med_group}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.med_group}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!--                                    <p:column>
+                                                                        <f:facet name="header"> 
+                                                                            <h:outputText value="Medicine Type" /> 
+                                                                        </f:facet>
+                                                                        <p:cellEditor> 
+                                                                            <f:facet name="output"> 
+                                                                                <h:outputText value="#{o.med_type}" /> 
+                                                                            </f:facet> 
+                                                                            <f:facet name="input"> 
+                                                                                <p:inputText value="#{o.med_type}" style="width:100%"/> 
+                                                                            </f:facet> 
+                                                                        </p:cellEditor>
+                                                                    </p:column>  
+                                -->
+                               
+                                <p:column width="42px">
+                                    <f:facet name="header"> 
+                                        <h:outputText value="Vendor Name" /> 
+                                    </f:facet>
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.vendor_name}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.vendor_name}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column> 
+                                   <p:column headerText="Quantity" width="40px">
+
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.quan}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.quan}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column>  
+                                <p:column width="42px">
+                                    <f:facet name="header"> 
+                                        <h:outputText value="Medicine Price" /> 
+                                    </f:facet>
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.amount}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.amount}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+                                </p:column> 
+
+                                <p:column width="42px">
+                                    <f:facet name="header"> 
+                                        <h:outputText value="Total Price" /> 
+                                    </f:facet>
+                                    <p:cellEditor> 
+                                        <f:facet name="output"> 
+                                            <h:outputText value="#{o.total}" /> 
+                                        </f:facet> 
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{o.total}" style="width:100%"/> 
+                                        </f:facet> 
+                                    </p:cellEditor>
+
+                                </p:column > 
+
+                                <p:column headerText="Edit/delete" style="width:80px"> 
+                                    <p:rowEditor />
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:outputLabel value="#{insert.totalp}" id="sum" style="float: right; margin-right: 70px"/>
+                                    <p:outputLabel value="All Total = " style="float: right; margin-right: 50px;"/>
+                                    <h:commandButton value="Save" action="#{insert.save()}"/>
+                                </f:facet>
+
+                            </p:dataTable>
+
+
+
+
+
+                        </h:form>
+
+                    </center>
+
+                </f:view>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

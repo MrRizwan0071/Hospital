@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./PatientTam.xhtml">
+
+          
+
+            <ui:define name="content">
+                
+                <center><h:form style="font-size: 12pt;font-style: italic">Patient Info Details</h:form></center>
+        <f:view>
+            <h:form id="form1"  style="margin-top: 50px">
+                
+                <p:notificationBar effect="slide" widgetVar="bar"  style=" height: 300px;font-style: italic; overflow: hidden; width: 400px; margin-left: 500px;margin-top: 160px;"  effectSpeed="slow"> 
+                    <h:panelGrid columns="2" style=" font-size:13pt;text-align: right;font-family:sans-serif;font-style: italic;"  id="vsg" cellpadding="1px" cellspacing="1px" border="1">
+                        <h:outputLabel value="Patient Name:"/>
+                        <h:outputText value="#{patientshow.p_name}" id="pname" style="font-size:20px;"/>
+                        <p:outputLabel value="Gender"/>
+                        <h:outputText value="#{patientshow.gender}" id="gd"/>
+                        
+                        <p:outputLabel value="Contact"/>
+                        <h:outputText value="#{patientshow.contact_no}" id="cn"/>
+                        <p:outputLabel value="Email"/>
+                        <h:outputText value="#{patientshow.email}" id="emg"/>
+                        
+                        <p:outputLabel value="BloodGroup"  />
+                        <h:outputText value="#{patientshow.bloodgroup}" id="bg"/>
+                        <p:outputLabel value="Symptom"/>
+                        <h:outputText value="#{patientshow.symptom}" id="sm"/>
+                        <p:outputLabel value="Date of Birth"/>
+                        <h:outputText value="#{patientshow.birthdate}" id="bd"/>
+                        <p:outputLabel value="Address"/>
+                        <h:inputTextarea value="#{patientshow.address}" id="ad" style=" font-size:13pt;text-align: right;font-family:sans-serif;font-style: italic;"/>
+                        
+                    </h:panelGrid>
+                </p:notificationBar> </h:form> 
+               
+            <h:form id="form2">                       
+           <p:inputText value="#{patientshow.patient_id}" id="grow">
+                <p:tooltip for="grow" value="Enter your id" showEffect="clip" hideEffect="explode" />
+           </p:inputText>
+          <!--  <p:commandButton value="Show" onclick="bar.show()"  action="#{patientshow.pdetails()}" update=":form2,form1:pname,:form1:gd,:form1:ad,:form1:cn,:form1:emg,:form1:bg,:form1:sm,:form1:bd"/>  !-->
+           <p:commandButton value="Show" onclick="bar.show()"  action="#{patientshow.pdetails()}" update=":form1:vsg,form2"/>
+            <p:commandButton value="Hide" onclick="bar.hide()"  />  
+             </h:form>
+        </f:view>  
+                
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Health Care</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top"><div class="head-logo">E-HEALTH CARE AND PHARMACY MANAGEMENT SYSTEM</div></ui:insert>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+<!--                    <center>
+                        <table bgcolor="white" border="1" width="100%">
+                        <th>Pharmacy</th>
+                        <tr>
+                            <td>
+                                  <h:link value="Madicine Group" outcome="medicine_group.xhtml"/> <br/>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td>
+                                   <h:link value="Madicine List" outcome="medicine_list.xhtml"/> <br/>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td>
+                                    <h:link value="Madicine Type" outcome="medicine_type.xhtml"/> <br/>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td>
+                                    <h:link value="Vendor List" outcome="vendor_list.xhtml"/> <br/>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                        
+                        <table bgcolor="white" border="1" width="100%">
+                           <th>Doctor</th>
+                        <tr>
+                            <td>
+                                  <h:link value="Diagnosis" outcome="diagnosis.xhtml"/> <br/>
+                            </td>
+                        </tr>  
+                            <tr>
+                            <td>
+                                  <h:link value="Doctor Schedule" outcome="doctorSchedule.xhtml"/> <br/>
+                            </td>
+                        </tr>  
+                        </table>
+                        </center>              -->
+
+<h:form>  
+              
+    <p:growl id="messages" autoUpdate="true"/>  
+  
+    <p:panelMenu style="width:160px">  
+       
+<!--        <p:submenu label="Pharmacy">  
+            <p:menuitem value="Pharmacy" ajax="false" >
+                <h:link value="Madicine Group" outcome="medicine_group.xhtml"/><br/>
+                <h:link value="Madicine List" outcome="medicine_list.xhtml"/><br/>
+               <h:link value="Madicine Type" outcome="medicine_type.xhtml"/><br/>
+               <h:link value="Vendor List" outcome="vendor_list.xhtml"/><br/>
+               <h:link value="Medicine Purchase" outcome="purchaseitem.xhtml"/><br/>
+               <h:link value="Medicine Sale" outcome="medicine_sale.xhtml"/><br/>
+            
+            </p:menuitem>
+            
+        </p:submenu>  
+        <p:submenu label="Doctor">  
+            <p:menuitem value="Doctor" ajax="false" >
+                <h:link value="Show Patient" outcome="doctor_show_patient.xhtml"/> <br/>
+                <h:link value="Show Patient Info" outcome="showPatient.xhtml"/> <br/>
+                <h:link value="Patient Test" outcome="patient_test.xhtml"/> <br/>
+                <h:link value="Pescribe Patient" outcome="patientPescribe.xhtml"/><br/>
+                <h:link value="Diagnosis" outcome="diagnosis.xhtml"/> <br/>            
+            </p:menuitem>
+            
+        </p:submenu>  -->
+       <p:submenu label="Admin">  
+            <p:menuitem value="Admin" ajax="false" >
+                <h:link value="Test Entry" outcome="testEntry.xhtml"/><br/>
+               <h:link value="Doctor Schedule" outcome="doctorSchedule.xhtml"/> <br/>
+            </p:menuitem>          
+        </p:submenu>  
+<!--<p:submenu label="Patient">  
+            <p:menuitem value="Patient" ajax="false" >
+                <h:link value="Doctor Search" outcome="doctorSearchandAppoint.xhtml"/><br/>
+                <h:link value="Patient Registration" outcome="patient_registration.xhtml"/><br/>
+              
+            </p:menuitem>
+            
+        </p:submenu>     -->
+    </p:panelMenu>  
+  
+</h:form>  
+                
+                        
+           </ui:insert>
+                 </div>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content"></ui:insert>
+            </div>
+       
+        <div id="bottom">
+            <ui:insert name="bottom"> <h:link outcome="FirstTam" value="Back"/><span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span></ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

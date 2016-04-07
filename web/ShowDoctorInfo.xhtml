@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./AfLog.xhtml">
+            <ui:define name="left">
+                <f:view>
+                    <h:form>  
+                        <p:growl id="messages" autoUpdate="true"/>  
+                        <p:panel header="Admin panel">
+                            <p:menu style="width:125px"> 
+                                <p:submenu label="Admin" icon="ui-icon-refresh">
+                                    <p:menuitem value="Registration User" outcome="registrationAll.xhtml"/>
+                                    <p:menuitem value="Doctor Registration" outcome="doctor_registration.xhtml"/>
+                                    <p:menuitem value="Test Entry" outcome="testEntry1.xhtml"/>
+                                    <p:menuitem value="Department Entry" outcome="departmentEntry.xhtml"/>
+                                    <p:menuitem value="Doctor Schedule" outcome="doctorSchedule1.xhtml"/>
+                                    <p:menuitem value="View Doctor Schedule" outcome="viewDoctorSchedule.xhtml"/>
+                                    <p:menuitem value="View Users" outcome="showUsers.xhtml"/>
+                                    <p:menuitem value="Show Doctor info" outcome="ShowDoctorInfo.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                            <p style="background-color: yellow; width:125px; height:30px" align="center" > <h:link value="Back page" outcome="AfLog.xhtml"/></p>
+                        </p:panel>
+                    </h:form>   
+                </f:view>
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <center>
+                            <p:panel style="width: 450px">
+                                <table cellpadding="10px">
+                                    <th colspan="2" bgcolor="purple"><h1>View Doctor Details </h1></th>
+                                    <tr>
+                                        <td align="right"><p:outputLabel value="Select Doctor :"/></td>
+                                        <td><p:selectOneMenu id="doctor_name" style="width:160px;" value="#{viewDoctoeInfo.doctor_name}" filter="true" filterMatchMode="startsWith" effect=" fade">
+                                                <f:selectItem itemLabel="--Select--" itemValue=""/>
+                                                <f:selectItems value="#{viewDoctoeInfo.doctorName}" var="doctor" itemLabel="#{doctor.value}" itemValue="#{doctor.value}"/>
+                                                <f:ajax event="change" listener="#{viewDoctoeInfo.doctorDetails()}" render="@form"/>
+                                            </p:selectOneMenu></td>
+                                    </tr>
+                                </table>
+                            </p:panel>
+                        </center>
+                        <center>
+                            <table cellpadding="5px" bgcolor="white" width="455px">
+                                <tr>
+                                    <th colspan="2">Doctor Info</th>
+                                </tr>
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Doctor First Name :"/></td>
+                                    <td><p:outputLabel value="#{viewDoctoeInfo.doctor_fname}"/></td>
+                                </tr> 
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Doctor Last Name :"/></td>
+                                    <td><p:outputLabel value="#{viewDoctoeInfo.doctor_lname}"/></td>
+                                </tr> 
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Gender :"/></td>
+                                    <td><p:outputLabel value="#{viewDoctoeInfo.doctor_gender}"/></td>
+                                </tr> 
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Date of Birth :"/></td>
+                                    <td><p:outputLabel value="#{viewDoctoeInfo.doctor_dob}"/></td>
+                                </tr> 
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Address :"/></td>
+                                    <td><h:outputText value="#{viewDoctoeInfo.doctor_address}" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Email :"/></td>
+                                    <td><p:outputLabel value="#{viewDoctoeInfo.doctor_email}"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Cell No :"/></td>
+                                    <td><p:outputLabel value="#{viewDoctoeInfo.doctor_cell}"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Designation :"/></td>
+                                    <td><p:outputLabel value="#{viewDoctoeInfo.doctor_designation}"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Specialist On :"/></td>
+                                    <td><p:outputLabel value="#{viewDoctoeInfo.qualification}"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><p:outputLabel value="Department :"/></td>
+                                    <td><p:outputLabel value="#{viewDoctoeInfo.department_name}"/></td>
+                                </tr>
+                            </table>
+                        </center>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

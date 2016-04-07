@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./DoctorTam.xhtml">
+
+
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form id="f1">
+                        <center>
+                            <p:panel style="width: 550px">
+                                <table cellpadding="5px">
+                                    <th  colspan="2" bgcolor="purple"><h1>Report View</h1></th>
+                                    <tr>
+                                        <td><p:outputLabel value="Patient ID"/></td>
+                                        <td><p:inputText id="patient_id" value="#{reportxyz.pat_id}" autocomplete="true">
+                                                <p:ajax event="keyup" listener="#{reportxyz.patientPrescription()}" update="patient_name"/></p:inputText></td>
+                                    </tr>
+                                    <tr>
+                                        <td> <p:outputLabel value="Patient name"/></td>
+                                        <td><p:outputLabel id="patient_name" value="#{reportxyz.patient_name}" /></td>
+                                    </tr>
+                                    <tr><td colspan="2"><p:commandButton value="View reports " action="#{reportxyz.abc()}" update="repor"/></td></tr>
+                                    <tr><td colspan="2"></td></tr>
+                                    <tr><td colspan="2"></td></tr>
+                                </table>
+                            </p:panel>
+                        </center>
+                        <p:spacer width="15px"/>
+                        <center>
+                            <h:dataTable var="ite" id="repor" border="1" bgcolor=" white" value="#{reportxyz.Port()}" width="50%" >
+                                <h:column>
+                                    <f:facet name="header">Test Name</f:facet>
+                                        #{ite.test}
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Test Report</f:facet>
+                                        #{ite.repo}
+                                </h:column>
+
+
+                                <h:column>
+                                    <f:facet name="header">Report Date</f:facet>
+                                        #{ite.date}
+                                </h:column>
+                            </h:dataTable>
+                        </center>
+                    </h:form>
+                </f:view>  
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </body>
+</html>
+
+

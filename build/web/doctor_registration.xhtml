@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./AfLog.xhtml">
+            <ui:define name="left">
+                <f:view>
+                    <h:form>  
+                        <p:growl id="messages" autoUpdate="true"/>  
+                        <p:panel header="Admin panel">
+                            <p:menu style="width:125px"> 
+                                <p:submenu label="Admin" icon="ui-icon-refresh">
+                                    <p:menuitem value="Registration User" outcome="registrationAll.xhtml"/>
+                                    <p:menuitem value="Doctor Registration" outcome="doctor_registration.xhtml"/>
+                                    <p:menuitem value="Test Entry" outcome="testEntry1.xhtml"/>
+                                    <p:menuitem value="Department Entry" outcome="departmentEntry.xhtml"/>
+                                    <p:menuitem value="Doctor Schedule" outcome="doctorSchedule1.xhtml"/>
+                                    <p:menuitem value="View Doctor Schedule" outcome="viewDoctorSchedule.xhtml"/>
+                                    <p:menuitem value="View Users" outcome="showUsers.xhtml"/>
+                                    <p:menuitem value="Show Doctor info" outcome="ShowDoctorInfo.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                            <p style="background-color: yellow; width:125px; height:30px" align="center" > <h:link value="Back page" outcome="AfLog.xhtml"/></p>
+                        </p:panel>
+                    </h:form>   
+                </f:view>
+            </ui:define>
+
+            <ui:define name="content">
+
+                <h:form enctype="multipart/form-data">
+                    <p:growl showDetail="true" id="g"/>
+                    <center>
+                        <p:fieldset legend="Doctor Registration">
+                            <p:panelGrid columns="3">
+
+                                <p:outputLabel value="Doctor First_Name"/>
+                                <p:inputText value="#{regis.fname}" id="fna"  required="true" requiredMessage="please select First Name"/>
+                                <p:message for="fna"/>
+
+                                <p:outputLabel value="Doctor Last_Name"/>
+                                <p:inputText value="#{regis.lname}" id="lnam"  required="true" requiredMessage="please select Last Name"/>
+                                <p:message for="lnam"/>
+
+                                <p:outputLabel value="Gender"/>
+                                <p:selectOneRadio value="#{regis.gender}" id="gen" required="true" requiredMessage="Please Select Gender">
+                                    <f:selectItem itemLabel="Male" itemValue="Male"/>
+                                    <f:selectItem itemLabel="Female" itemValue="Female"/>
+                                </p:selectOneRadio>
+                                <p:message for="gen"/>
+
+                                <p:outputLabel value="Address"/>
+                                <p:inputTextarea value="#{regis.addres}" id="add" required="true" requiredMessage="Please Select Address"/>
+                                <p:message for="add"/>
+
+                                <p:outputLabel value="Date-Of-Birth"/>
+                                <p:calendar value="#{regis.date}" effect="explode" pattern="yyyy-MM-dd" id="dat" required="true" requiredMessage="Please Select Date"/>
+                                <p:message for="dat"/>
+
+                                <p:outputLabel value="E-Mail"/>
+                                <p:inputText value="#{regis.email}" id="edm"  required="true" requiredMessage="please write Email"/>
+                                <p:message for="edm"/>
+
+                                <p:outputLabel value="Photo :"/>
+                                <p:fileUpload value="#{regis.photo}" mode="simple" id="photo" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true" requiredMessage="Please select photo"/>
+                                <p:message for="photo"/>
+
+
+                                <p:outputLabel value="Cell-Number"/>
+                                <p:inputText value="#{regis.phone}" id="cal" required="true" requiredMessage="Please Select photo"/>
+                                <p:message for="cal"/>
+
+                                <p:outputLabel value="Designation"/>
+                                <p:inputText value="#{regis.desig}" id="des" required="true" requiredMessage="Please write Designation"/>
+                                <p:message for="des"/>
+
+                                <p:outputLabel value="Qualification"/>
+                                <p:inputText value="#{regis.quali}" id="qua" required="true" requiredMessage="Please write Qualification"/>
+                                <p:message for="qua"/>
+
+
+                                <p:outputLabel value="Department"/>
+                                <p:selectOneMenu value="#{regis.dep_id}" style="width: 190px;" id="dep">
+                                    <f:selectItem itemLabel="--Select One--"/>
+                                    <f:selectItems value="#{regis.geDepartment()}" var="ie" itemLabel="#{ie.depart}" itemValue="#{ie.dep_id}"/>                  
+                                </p:selectOneMenu>
+                                <p:message for="dep"/>
+
+                                <p:commandButton value="Save" action="#{regis.inser()}" ajax="false"/>
+
+                            </p:panelGrid>
+                        </p:fieldset>
+                    </center>
+                </h:form>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

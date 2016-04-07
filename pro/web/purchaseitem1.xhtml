@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./PharmacyTam.xhtml">
+            <ui:define name="content">
+                <f:param name="id" value="112"/>
+                <h:form id="form1" >
+                    <p:growl id="messages" showDetail="true"/>
+                    <center>
+                        <p:panelGrid columns="4">
+                            <p:outputLabel value="Medicine Purchase Date" style="margin-top: 200px;"/>
+
+                            <p:calendar effect="explode" value="#{insert.s_date}" pattern="dd/MM/yyyy"/>
+                            <p:outputLabel value="Reference"/>
+                            <p:inputText id="ref" value="#{item.ref}">
+                                <p:watermark for="ref" value="Type reference name" /></p:inputText>
+                            <h:outputText value="Medicine Name" />
+                            <p:selectOneMenu value="#{item.med_name}"  id="list"  style="width: 160px" filter="true" filterMatchMode="startsWith" effect="fade">  
+                                <f:selectItems value="#{item.comBobox}"/>
+                                <f:ajax event="change" render=" ad gp" listener="#{item.selctinfo}"/>
+                            </p:selectOneMenu> 
+                            <p:outputLabel value="Available Quantity"/>
+                            <p:outputLabel value="#{item.med_quantity}"  id="gp"/>
+
+
+                            <h:outputLabel for="group" value="Med-Group-Name: "  />
+                            <p:inputText value="#{item.group_name}" id="ad"/>
+
+                            <h:outputLabel for="vname" value="Vendor-Name : "/>
+
+                            <p:selectOneMenu value="#{item.vendor_name}" id="updat" style="width: 160px" filter="true" filterMatchMode="startsWith" effect="fade">  
+                                <f:selectItems value="#{item.vendorComboBox}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="mtype" value="Medicine-Type"/>
+                            <p:selectOneMenu value="#{item.med_type_name}" id="upd" style="width: 160px" filter="true" filterMatchMode="startsWith" effect="fade">  
+                                <f:selectItems value="#{item.medicineType}"/>
+                            </p:selectOneMenu>
+
+                            <h:outputLabel for="qty" value="Qty"/>
+                            <p:inputText value="#{item.qty}"  id="em"/>
+
+                            <h:outputLabel for="price" value="Price: " />
+                            <p:inputText  value="#{item.price}" id="mob"/>
+                            <f:facet name="footer">
+                                <h:commandButton value="Add Item" action="#{item.addAction}" />
+                            </f:facet>
+                        </p:panelGrid>
+                        <p:spacer height="30px;"/>
+                        <p:dataTable value="#{item.orderList}" var="o"  editable="true">
+                            <f:facet name="header"> 
+                                Purchase Item
+                            </f:facet>
+                            <p:ajax event="rowEdit" listener="#{item.onEdit}" update=":form1:messages, :form1:sum" /> 
+                            <p:ajax event="rowEditCancel" listener="#{item.onCancel}" update=":form1:messages, :form1:sum" />
+                            <p:column>
+                                <f:facet name="header"> 
+                                    <h:outputText value="Med- Name" /> 
+                                </f:facet>
+                                <p:cellEditor> 
+                                    <f:facet name="output"> 
+                                        <h:outputText value="#{o.med_name}" /> 
+                                    </f:facet> 
+                                    <f:facet name="input"> 
+                                        <p:inputText value="#{o.med_name}" /> 
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header"> 
+                                    <h:outputText value="Group-name" /> 
+                                </f:facet>
+                                <p:cellEditor> 
+                                    <f:facet name="output"> 
+                                        <h:outputText value="#{o.group_name}" /> 
+                                    </f:facet> 
+                                    <f:facet name="input"> 
+                                        <p:inputText value="#{o.group_name}" /> 
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header"> 
+                                    <h:outputText value="Vendor-name" /> 
+                                </f:facet>
+                                <p:cellEditor> 
+                                    <f:facet name="output"> 
+                                        <h:outputText value="#{o.vendor_name}" /> 
+                                    </f:facet> 
+                                    <f:facet name="input"> 
+                                        <p:inputText value="#{o.vendor_name}" /> 
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header"> 
+                                    <h:outputText value="Quantity" /> 
+                                </f:facet>
+                                <p:cellEditor> 
+                                    <f:facet name="output"> 
+                                        <h:outputText value="#{o.qty}" /> 
+                                    </f:facet> 
+                                    <f:facet name="input"> 
+                                        <p:inputText value="#{o.qty}" /> 
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header"> 
+                                    <h:outputText value="Price" /> 
+                                </f:facet>
+                                <p:cellEditor> 
+                                    <f:facet name="output"> 
+                                        <h:outputText value="#{o.price}" /> 
+                                    </f:facet> 
+                                    <f:facet name="input"> 
+                                        <p:inputText value="#{o.price}" /> 
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>   
+
+                            <p:column>
+                                <f:facet name="header"> 
+                                    <h:outputText value="Total" /> 
+                                </f:facet>
+                                <p:cellEditor> 
+                                    <f:facet name="output"> 
+                                        <h:outputText value="#{o.totalp}" /> 
+                                    </f:facet> 
+                                    <f:facet name="input"> 
+                                        <p:inputText value="#{o.totalp}" /> 
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column> 
+
+                            <p:column headerText="Options" > 
+                                <p:rowEditor /> 
+                            </p:column>
+                            <f:facet name="footer">
+
+                            </f:facet>
+
+                        </p:dataTable>
+                        <p:outputLabel value="#{item.totaltotalp}" id="sum" style="float: right; margin-right: 70px"/>
+                        <p:outputLabel value="All Total = " style="float: right; margin-right: 50px;"/>
+
+                        <p:commandButton value="Purchase" onclick="confirmation.show()" type="button"/>  
+                        <p:confirmDialog message="Are you sure?"  
+                                          hideEffect="explode"  
+                                         header="Initiating destroy process" severity="alert" widgetVar="confirmation">  
+
+                            <p:commandButton value="Yes Sure" update="messages" oncomplete="confirmation.hide()"  
+                                             actionListener="#{item.saveItems()}" />  
+                            <p:commandButton value="Not Yet" onclick="confirmation.hide()" type="button" />   
+
+                        </p:confirmDialog> 
+
+                    </center>
+                </h:form>
+
+            </ui:define>
+
+            <ui:define name="bottom">
+                <h:link outcome="FirstTam" value="Back"/><span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

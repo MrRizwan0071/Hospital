@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="patientPescribe1.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="diagnosis2.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="Report_view.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="doctor_show_patient.xhtml" x="150" y="1500" zoom="true"/>
+        <Node id="sample.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="FirstTemplateClient.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="doctor_show_patient1.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="patient_registration1.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="Searchdoctor.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="viewDoctorSchedule.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="showPatient.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="showPrescription.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="appoint1.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="sale_report.xhtml" x="1400" y="750" zoom="true"/>
+        <Node id="medicine_group1.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="DoctorTam.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="doctorSearchandAppoint.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="patient_test.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="showdial.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="purchaseitem.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="AfLog.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="medicineDetails_1.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="DiagnosisTam.xhtml" x="1650" y="600" zoom="true"/>
+        <Node id="testDetails.xhtml" x="900" y="1050" zoom="true"/>
+        <Node id="registrationAll.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="purchaseitem1.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="FirstTam.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="vendor_list1.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="purchase_report.xhtml" x="650" y="1200" zoom="true"/>
+        <Node id="patientregistration3.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="update_Test_Entry.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="PharmacyTam.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="showPatient1.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="stock.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="medicine_type1.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="doctorSchedule1.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="patient_test1.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="medicine_list1.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="header.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="update_medicine_group.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="medicineDetails.xhtml" x="2150" y="300" zoom="true"/>
+        <Node id="medicine_sale1.xhtml" x="380" y="748" zoom="true"/>
+        <Node id="patientDetails.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="login.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="update_medicine_type.xhtml" x="1150" y="900" zoom="true"/>
+        <Node id="PatientTam.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="update_vendor_list.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="patient_registration.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="index.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="appoint.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="ptadt.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="doctorSearchandAppoint1.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="update_medicine_list.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="testEntry1.xhtml" x="400" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

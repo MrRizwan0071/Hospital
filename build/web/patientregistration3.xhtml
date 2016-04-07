@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./PatientTam.xhtml">
+
+            <ui:define name="top">
+                <h:form style="font-size: 20pt;font-style: italic">E-HEALTH CARE AND PHARMACY MANAGEMENT SYSTEM</h:form>
+            </ui:define>
+
+            <ui:define name="left">
+                <p:panel style="background-color:#AFAFAF;width: 155px;height: 80px;border:10pt" >
+                    <h:link value="Patient " style="font-size: 15pt;border: 3pt" outcome="PatientTam.xhtml" /><br/>
+                    <h:link value="Assistant" outcome="PatientTam.xhtml" style="font-size: 15pt;" />
+                
+                </p:panel>
+            </ui:define>
+
+            <ui:define name="content">
+
+                <f:view>
+                    <h:form enctype="multipart/form-data">
+                        <p:panel id="all" style="font-size: 9pt;padding: 0;margin-bottom: 190px;border: none;">
+                            <p:growl showDetail="true" id="g"/>
+                            <p:fieldset legend="Patient Registration" >
+                                <h:panelGrid columns="4" cellpadding="7" columnClasses="firstcolumn,centercolumn" style="margin: 0 auto;text-align: left">
+                                    <p:outputLabel value="Patient ID :"/>
+                                    <p:inputText value="#{patient_info.patient_id}" id="grow" >
+                                        <p:ajax event="keyup" listener="#{patient_info.register()}" update="faname,moname,gen"/>
+                                         <p:tooltip for="grow" value="Enter your id" showEffect="clip" hideEffect="explode" />
+                                    </p:inputText>
+
+
+                                    <p:outputLabel value="Patient Name :"/>
+                                    <p:outputLabel value="#{patient_info.name}" id="faname" />
+
+
+                                    <p:outputLabel value="Patient contact no :"/>
+                                    <p:outputLabel value="#{patient_info.contact_no}" id="moname" />
+
+
+                                    <p:outputLabel value="Gender :"/>
+                                    <p:outputLabel value="#{patient_info.gender}" id="gen" style="border: #ffffff;" />
+
+
+                                    <p:outputLabel value="Present Address :"/>
+                                    <p:inputTextarea value="#{patient_info.address}" id="preadd" required="true" requiredMessage=" please Email"/>
+
+                                    <p:outputLabel value="Marital Status:"/>
+                                    <p:selectOneMenu value="#{patient_info.maritul_status}"  id="list"  editable="true" style="width: 130px;" >  
+                                        <f:selectItems value="#{patient_info.meritulStatusCombo}"/>             
+                                    </p:selectOneMenu>
+
+
+                                    <p:outputLabel value="Date of Birth :"/>
+                                    <p:calendar value="#{patient_info.birthdate}" id="dob" required="true" requiredMessage="dateof birth please"/>
+
+
+                                    <h:outputLabel value="Email:"/>
+                                    <p:inputText value="#{patient_info.email}" required="true" requiredMessage="Email please" />
+                                    <p:outputLabel value="Blood Group:"/>
+                                    <p:inputText value="#{patient_info.bloodgroup}" />
+                                    <p:outputLabel value="Second Contact:"/>
+                                    <p:inputTextarea value="#{patient_info.second_contact}" />
+                                    <p:outputLabel value="Symptom:"/>
+                                    <p:inputText value="#{patient_info.symptom}" />                           
+                                     <p:outputLabel value="Password:"/>
+                                     <p:password value="#{patient_info.pass}"/> 
+
+                                </h:panelGrid>
+                            </p:fieldset>
+
+                            <h:panelGrid columns="1" style="margin: 0 auto;">
+                                <p:commandButton value="submit" action="#{patient_info.save()}" update="all,g" />
+                            </h:panelGrid>
+                        </p:panel>
+                    </h:form>
+                </f:view>
+
+
+            </ui:define>
+
+     </ui:composition>
+
+    </body>
+</html>

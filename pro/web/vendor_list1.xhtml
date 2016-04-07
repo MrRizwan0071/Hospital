@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./PharmacyTam.xhtml">
+<ui:define name="content">
+                  <f:view>
+            <c:set value="The field is empty" var="msg"/>
+            <h:form style="background-color: bisque">
+                <center>
+                    <table>
+                        <tr><th colspan="3">Vendor List</th></tr>
+                        <tr>
+                            <td><p:outputLabel value="Vendor Name" for="vendor_name" /></td>
+                            <td><p:inputText value="#{vendorListBean.vendor_name}" id="vendor_name" required="true" requiredMessage="#{msg}"/></td>
+                            <td><h:message for="vendor_name"/></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="Vendor Address" for="vendor_address" /></td>
+                            <td><p:inputTextarea value="#{vendorListBean.vendor_address}" id="vendor_address" required="false" requiredMessage="#{msg}"/></td>
+                            <td><h:message for="vendor_address"/></td>
+                        </tr>
+                       <tr>
+                            <td><p:outputLabel value="Vendor Email" for="vendor_email" /></td>
+                            <td><p:inputText value="#{vendorListBean.vendor_email}" id="vendor_email" required="false" requiredMessage="#{msg}"/></td>
+                            <td><h:message for="vendor_email"/></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="Vendor Cell No" for="vendor_mobile" /></td>
+                            <td><p:inputText value="#{vendorListBean.vendor_mobile}" id="vendor_mobile" required="false" requiredMessage="#{msg}"/></td>
+                            <td><h:message for="vendor_mobile"/></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="Vendor Company Name" for="vendor_comp_name" /></td>
+                            <td><p:inputText value="#{vendorListBean.vendor_comp_name}" id="vendor_comp_name" required="true" requiredMessage="#{msg}"/></td>
+                            <td><h:message for="vendor_comp_name"/></td>
+                        </tr>
+                        <tr><th colspan="3"><p:commandButton value="Save" action="#{vendorListBean.save()}" ajax="false"/></th></tr>
+                    </table>
+                </center> 
+            </h:form> 
+            
+            <h:form style="background-color: yellowgreen">
+                 <center>
+                     <p:dataTable value="#{vendorListBean.allData}" var="item" paginator="true" rows="10">
+                     <p:column>
+                         <f:facet name="header">Vendor Name</f:facet>
+                         #{item.vendor_name}
+                     </p:column>
+                         <p:column>
+                         <f:facet name="header">Vendor Address</f:facet>
+                         #{item.vendor_address}
+                     </p:column>
+                         <p:column>
+                         <f:facet name="header">Vendor Email</f:facet>
+                         #{item.vendor_email}
+                     </p:column>
+                         <p:column>
+                         <f:facet name="header">Vendor Cell No</f:facet>
+                         #{item.vendor_mobile}
+                     </p:column>
+                         <p:column>
+                         <f:facet name="header">Vendor Company Name</f:facet>
+                         #{item.vendor_comp_name}
+                     </p:column>
+                     <p:column >
+                         <f:facet name="header" >Update</f:facet>
+                         <p:commandLink value="√" action="#{vendorListBean.goUpdate()}">
+                             <f:setPropertyActionListener target="#{vendorListBean}" value="#{item}"/>
+                         </p:commandLink>
+                     </p:column>
+                     <p:column >
+                         <f:facet name="header" >Delete</f:facet>
+                         <p:commandLink value="×" action="#{vendorListBean.deleterow()}" ajax="false">
+                             <f:setPropertyActionListener target="#{vendorListBean}" value="#{item}"/>
+                         </p:commandLink>
+                     </p:column>
+                 </p:dataTable>
+                 
+                     </center>
+             </h:form>
+        </f:view>
+            </ui:define>
+
+            <ui:define name="bottom">
+              <h:link outcome="FirstTam" value="Back"/><span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

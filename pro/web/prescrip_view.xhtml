@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./DoctorTam.xhtml">
+
+          
+
+            <ui:define name="content">
+                 <h:form style="width: auto; background-color: brown; height: 90px; font-style: italic;" >
+            <center><p:outputLabel value="Show Patient's Prescription" style="font-size: 35px; font-weight: bolder;"/></center>
+        </h:form>
+        <h:form>
+            <center>
+                <p:panelGrid columns="2">
+                    <f:facet name="header">Prescription </f:facet>
+                    <p:outputLabel value="Enter Patient's Id"/>
+                    <p:inputText value="#{show_med.prescrip_id}">
+                        <p:ajax event="keyup" listener="#{show_med.geShowDate()}"  update="dt"/>  
+                    </p:inputText>
+
+                    <p:outputLabel value="Available Date"/>
+                    <p:selectOneMenu  value="#{show_med.p_date}" id="dt" style="width: 210px;">
+                        <f:selectItem itemLabel="--Select One--"/>
+                        <f:selectItems  value="#{show_med.geShowDate()}" var="date1" itemLabel="#{date1.p_date}" itemValue="#{date1.p_date}"/>
+                        <!--<p:ajax event="change"  listener="" update="panel"/>-->
+                    </p:selectOneMenu>
+                    
+                    <f:facet name="footer">
+                        <center>  <h:commandButton value="Show Details" action="#{show_med.showMed}"/></center>
+                    </f:facet>
+                   
+
+
+                </p:panelGrid>
+
+                <p:spacer height="25px"/>
+
+                <h:dataTable var="itm" border="2" id="panel" value="#{show_med.data}">
+                    <f:facet name="header">Prescription Detail's</f:facet>
+                    <h:column >
+                        <f:facet name="header">Medicine Name</f:facet>
+                        #{itm.med_name}
+                    </h:column>
+
+                    <h:column >
+                        <f:facet name="header">Medicine Douses</f:facet>
+                        #{itm.dos}
+                    </h:column>
+
+                    <h:column >
+                        <f:facet name="header">Douses Schedule</f:facet>
+                        #{itm.dos_sch}
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Prescrip Date</f:facet>
+                        #{itm.date}
+                    </h:column>
+
+                    <h:column >
+                        <f:facet name="header">Remark</f:facet>
+                        #{itm.remark}
+                    </h:column>
+
+                </h:dataTable>
+            </center>
+        </h:form>
+            </ui:define>
+
+          
+
+        </ui:composition>
+
+    </body>
+</html>

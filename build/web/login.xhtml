@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+
+            <!--            <ui:insert name="top"><div class="head-logo">E-HEALTH CARE AND PHARMACY MANAGEMENT SYSTEM</div></ui:insert>-->
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">
+                <f:view>
+                    <h:form id="loginForm">
+                        <p:growl id="msg" showDetail="true" life="3000" />
+                        <table align="center">
+
+                            <tr>
+                                <td rowspan="2">
+                                    <p:fieldset legend="Patient" style="width: 285px; alignment-adjust: auto; height: 450px" >  
+                                        <h:panelGrid columns="1" cellpadding="5px">  
+                                            <h:outputText style="font-size: 13px; font-family: fantasy; color: darkviolet"
+                                                          value="A patient is any recipient of health care services. The patient is most often ill or injured and in need of treatment by a physician, 
+                                                          physician assistant, advanced practice registered nurse, veterinarian, or other health care provider. " /> 
+                                            <p:spacer width="10px"/>
+                                            <h:outputLabel style="font-size: 13px; color: darkviolet " value="An outpatient (or out-patient) is a patient who is not hospitalized for 24 hours or more but who visits a hospital, 
+                                                           clinic, or associated facility for diagnosis or treatment. Treatment provided in this fashion is called ambulatory care. Sometimes surgery is performed without the need for a formal hospital admission or an overnight stay.  "/>
+                                            <p:panel header="Instruction for patient">
+                                                <p:outputLabel  value="A patient firstly visit patient link, search a doctor 
+                                                                based on his/her disease. Then click appoint and submit the information... atlast click on registar button. "/></p:panel>
+                                        </h:panelGrid>  
+                                    </p:fieldset>  
+                                </td>
+                                <td rowspan="2" >
+                                    <p:fieldset legend="Pharmacy" style="width: 285px; alignment-adjust: auto; height: 450px" >  
+                                        <h:panelGrid columns="1" cellpadding="5px">  
+                                            <h:outputText style="font-size: 13px; font-family: fantasy; color: darkviolet"
+                                                          value="Keeping up with innovations in customer services, retail sales and human resources policies is essential for any pharmacy owner or 
+                                                          pharmacist responsible for training and supervising pharmacy staff. Get insights from other industries and learn from profiles of pharmacists 
+                                                          in a range of pharmacy practice settings. " /> 
+                                            <p:spacer width="10px"/>
+                                            <h:outputLabel style="font-size: 13px; color: darkviolet " value="Pharmacy reimbursement rates represent an insurers' estimation of product cost
+                                                           plus dispensing fees reflecting the costs of doing business and providing patient care and counseling."/>
+                                            <p:spacer width="10px"/>
+                                            <h:outputLabel style="font-size: 13px; color: darkviolet" value="Pharmacists, technicians and clerks must work together to ensure their workplace has the necessary physical security, pharmacy software and personnel policies in place to deter crime. "/>
+                                        </h:panelGrid>  
+                                    </p:fieldset>  
+                                </td>
+                                <td>
+                                    <p:fieldset legend="Attend To" style="width:285px; alignment-adjust: auto; height: 215px" >
+                                        <center>
+
+                                            <h:form style="width: 200px; font-size: 13px; alignment-adjust: after-edge" >
+                                                <p:panel>
+                                                    <h:link id="admin" outcome="AfLog.xhtml" value="Admin" /><p></p>
+                                                    <h:link id="doctor" outcome="DoctorTam.xhtml" value="Doctor"/><p></p>
+                                                    <h:link id="patient" outcome="./public/PatientTam.xhtml" value="Patient"/><p></p>
+                                                    <h:link id="pharmacy" outcome="PharmacyTam.xhtml" value="Pharmacy"/><p></p>
+                                                    <h:link id="diagnosis" outcome="DiagnosisTam.xhtml" value="Diagnosis"/><p></p>
+                                                </p:panel>
+
+                                            </h:form>
+
+                                        </center>
+                                    </p:fieldset>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p:fieldset  legend="Login" style="width:  285px; alignment-adjust: auto; height: 215px;" >
+
+
+                                        <p:spacer width="7px"/>
+                                        <p:panel>
+                                            <table cellpadding="5px">
+                                                <tr>
+                                                    <td align="right"> <p:outputLabel value="User Name" style="font-size: 12px"/></td>
+                                                    <td><p:inputText id="username" value="#{loginBean.uname}"  required="true">
+                                                            <p:watermark value="Your user name" for="username"/>
+                                                        </p:inputText></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="right"> <p:outputLabel value="Password"/></td>
+                                                    <td><p:password id="password" value="#{loginBean.password}"  feedback="false" required="true">
+                                                            <p:watermark value="your password" for="password"/>
+                                                        </p:password></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" align="center"><p:commandButton action="#{loginBean.loginProject}" value="Login" update="loginForm" ajax="true"/></td> 
+                                                </tr>
+                                            </table>      
+                                        </p:panel> 
+                                        <panel>
+                                            <table  >
+                                                <tr>
+                                                    <td style="color: crimson"><h:link value="Forget Password ?" outcome="login.xhtml"/></td>
+                                                    <td style="color: crimson"><h:link value="New Registration ?" outcome="login.xhtml"/></td>                                                    
+                                                </tr>
+                                            </table>
+                                        </panel>
+
+                                    </p:fieldset>
+
+                                </td>
+                            </tr>
+                            <!--                <div id="dv" >-->
+
+
+                            <!--                </div>-->
+                            <!--                 <div id="dv2" >-->
+
+                        </table>
+                        <!--                </div>-->
+
+                    </h:form>
+                </f:view>
+
+
+            </ui:insert>
+        </div>
+        <div id="bottom">
+            <ui:insert name="bottom" > <span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span> </ui:insert>
+        </div>
+    </h:body>
+
+</html>

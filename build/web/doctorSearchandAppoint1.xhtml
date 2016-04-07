@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./PatientTam.xhtml">
+<ui:define name="content">
+                  <h:form style="height: 90px; width: auto; background-color: burlywood;">
+            <center>
+                <p:outputLabel value="Search Doctor" style="font-size: 50px; font-style: italic; font-weight: bolder; color: blue;"/></center>
+        </h:form>
+        <h:form style="height: 500px; width: auto; background-color: cornflowerblue;">
+            <center>
+                <p:outputLabel value="You Can Select Any one Of them To Search Doctor" style="font-size: 20px; color: red; font-weight: bolder; font-style: italic;"/><br/>
+                <p:outputLabel value="Select Name :" style=" font-size: 20px; margin-top: 50px;"/>
+                &nbsp; &nbsp;&nbsp; &nbsp;
+                
+                <p:selectOneMenu value="#{managBean.name}" effect="fold" id="name" editable="false"  style="  margin-top: 50px; width: 170px;">
+                    <f:selectItem itemLabel="--Select One--"/>
+                    <f:selectItems value="#{managBean.nameCombo()}" var="item" />
+                    <p:ajax event="change" update="panel" listener="#{managBean.allInfo()}" />
+                </p:selectOneMenu><br/>
+
+                <p:outputLabel value="Select Department :" style=" font-size: 20px; margin-top: 30px;"/>
+                &nbsp; &nbsp;
+                <p:selectOneMenu value="#{managBean.department_name}"  id="department_name" effect="fold" editable="false"  style=" margin-right: 40px; margin-top: 20px; width: 170px;">
+                    <f:selectItem itemLabel="--Select One--"/>
+                    <f:selectItems value="#{managBean.ComboType()}"/>
+                    <p:ajax event="change" update="panel" listener="#{managBean.allInfo()}"/>
+                </p:selectOneMenu><br/>
+
+
+
+                <h:dataTable  border="1" var="item1" id="panel" value="#{managBean.allInfo()}">
+
+                    <h:column>
+                        <f:facet name="header">Doctor Name</f:facet>
+                        #{item1.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Designation</f:facet>
+                        #{item1.designation}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Department</f:facet>
+                        #{item1.department_name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Schedule Time</f:facet>
+                        #{item1.time}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Schedule Day</f:facet>
+                        #{item1.day}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Fee</f:facet>
+                        #{item1.fee}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Status</f:facet>
+
+                        <p:commandLink value="Appointment" action="appoint1">
+                            <f:setPropertyActionListener target="#{managBean}" value="#{item1}"/>
+                        </p:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </center>
+
+        </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+              <h:link outcome="FirstTam" value="Back"/><span>© a IDB-BISEW Scholarship, Round-17, J2EE Batch -Project</span>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

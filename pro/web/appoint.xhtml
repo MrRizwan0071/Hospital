@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./TemplateForHealthCare.xhtml">
+ <ui:define name="content">
+                 <h:form style="height: 90px; width: auto; background-color: burlywood;">
+            <center><p:outputLabel value="Doctor's Appoinment" style="font-size: 50px; font-style: italic; font-weight: bolder; color: blue;"/></center>
+        </h:form>
+
+        <h:form style="height: 500px; width: auto; background-color: cadetblue;">
+            <center>
+                <p:panelGrid columns="2" style="">
+
+                    <p:outputLabel value="Doctor Name :"/>
+                    <p:inputText value="#{managBean.name}"/>
+                    <p:outputLabel value="Doctor_Schedule :"/>
+                    <p:inputText value="#{managBean.time}"/>
+                    <p:outputLabel value="Patient Name:"/>
+                    <p:inputText value="#{managBean.p_name}"/>
+                    <p:outputLabel value="Gender :"/>
+                    <p:inputText value="#{managBean.gender}"/>
+                    <p:outputLabel value="Patient Cell Number :"/>
+                    <p:inputText value="#{managBean.phone}"/>
+                    <p:outputLabel value="Appoinment Date :"/>
+                    <p:calendar effect="explode" value="#{managBean.a_date}" pattern="dd/MM/yyyy"/>
+                    <p:commandButton  value="Register" action="#{managBean.appoinment()}"/>
+                    <p:commandButton  value="Cancel"/>                  
+                   
+                </p:panelGrid>
+<!--                 <h:link value="Back To Previous Page" outcome="try.xhtml" />-->
+            </center>
+        </h:form>
+            </ui:define>
+ </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./DoctorTam.xhtml">
+
+           
+            <ui:define name="content">
+<!--                  <h:form style="width: auto; height: 90px; background-color: tomato;">
+            <center><h1></center>
+        </h:form>-->
+        
+        <center>
+        <h:form>
+            <table width="450px">
+                <th colspan="2" align="center" bgcolor="purple"><h1>Show Patient's Details</h1></th>
+                <tr>
+                    <td colspan="2">
+                        <p:spacer width="10px"/>
+                         <p:panelGrid columns="2" style="width: 450px">
+                
+                <p:outputLabel value="Patient Id:"/>
+                <p:outputLabel value="#{patient_infos.patient_id}"/>
+                
+                 <p:outputLabel value="Patient Name:"/>
+                 <p:outputLabel value="#{patient_infos.name}"/>
+                
+                 <p:outputLabel value="Address:"/>
+                 <p:outputLabel value="#{patient_infos.address}"/>
+                
+                 <p:outputLabel value="E-Mail"/>
+                 <p:outputLabel value="#{patient_infos.email}"/>
+                
+                 <p:outputLabel value="Marital Status:"/>
+                 <p:outputLabel value="#{patient_infos.maritul_status}"/>
+                
+                 <p:outputLabel value="Phone:"/>
+                 <p:outputLabel value="#{patient_infos.contact_no}"/>
+                
+                 <p:outputLabel value="Blood Group:"/>
+                 <p:outputLabel value="#{patient_infos.bloodgroup}"/>
+                
+                 <p:outputLabel value="Gender:"/>
+                 <p:outputLabel value="#{patient_infos.gender}"/>
+                
+                 <p:outputLabel value="Symptom:"/>
+                 <p:outputLabel value="#{patient_infos.symptom}"/>
+                
+                 <p:outputLabel value="Second Contact:"/>
+                 <p:outputLabel value="#{patient_infos.second_contact}"/>
+            </p:panelGrid>
+       
+                    </td>
+                </tr>
+            </table>
+            </h:form>
+            </center>
+        <h:link value="Back" outcome="doctor_show_patient1.xhtml"/>
+            </ui:define>
+
+          
+
+        </ui:composition>
+
+    </body>
+</html>

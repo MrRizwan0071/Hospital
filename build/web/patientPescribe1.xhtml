@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./DoctorTam.xhtml">
+
+
+
+            <ui:define name="content">
+                <h:form id="form1">
+
+                    <center>
+                        <p:growl id="messages" showDetail="true"/>
+                        <table cellpadding="5px" width="60%" align="center">
+                            <th colspan="2" bgcolor="purple"><h1>Patient's Prescribe</h1></th>
+                            <tr>
+                                <td colspan="2" align="center"><p:panelGrid columns="4">
+
+                                        <p:outputLabel value="Date"/>
+                                        <p:calendar value="#{patientPescribe.date}" effect="explode" pattern="dd-MM-yyyy"></p:calendar>
+
+                                        <p:outputLabel value="Patient Id"/>
+                                        <p:inputText id="patient_id" value="#{patientPescribe.patient_id}">
+                                            <p:ajax event="keyup" listener="#{patientPescribe.patientSelect()}" update="patient_name,patient_age,doctor_name" />
+                                        </p:inputText>
+
+                                        <p:outputLabel value="Patient name"/>
+                                        <p:outputLabel id="patient_name" value="#{patientPescribe.patient_name}"/>
+
+                                        <p:outputLabel value="Patient age"/>
+                                        <p:outputLabel id="patient_age" value="#{patientPescribe.patient_age}"/>
+
+                                        <p:outputLabel  value="Doctor name"/>
+                                        <p:outputLabel id="doctor_name" value="#{patientPescribe.doctor_name}"/>
+
+                                        <p:outputLabel  value="Medicine Name"/>
+                                        <p:selectOneMenu value="#{patientPescribe.med_name}" id="med_name" style="width: 160px" filter="true" filterMatchMode="startsWith"  effect="fade">
+                                            <f:selectItem itemLabel="--Select One--"/>
+                                            <f:selectItems value="#{patientPescribe.comBobox}"/>
+                                            <f:ajax event="change" listener="#{patientPescribe.selctinfo()}" render="med_name"/>
+                                        </p:selectOneMenu>
+
+                                        <p:outputLabel value="Douse"/>
+                                        <p:inputText id="douse" value="#{patientPescribe.douse}"/>
+
+                                        <p:outputLabel value="Taking_Schedule"/>
+                                        <p:selectOneMenu value="#{patientPescribe.taking_schedule}" id="taking_schedule" style="width: 160px" editable="true" >
+                                            <f:selectItem itemLabel="--Select--"/>
+                                            <f:selectItems value="#{patientPescribe.douses}"/>
+                                        </p:selectOneMenu>
+
+                                        <p:outputLabel value="Next Consult Date"/>
+                                        <p:calendar value="#{patientPescribe.next_date}" effect="explode" pattern="dd-MM-yyyy"></p:calendar>
+
+                                        <p:outputLabel value="Remarks"/>
+                                        <p:inputTextarea id="textarea" value="#{patientPescribe.textarea}"/>
+
+                                        <f:facet name="footer">
+                                            <h:commandButton value="Add Test" action="#{patientPescribe.addAction()}"/>
+
+                                        </f:facet>
+                                    </p:panelGrid></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center"><p:dataTable value="#{patientPescribe.orderList}" var="o"  widgetVar="50" editable="true" style="width: 90%">
+                                        <f:facet name="header"> 
+                                            Prescribe Medicine 
+                                        </f:facet>
+                                        <p:ajax event="rowEdit" listener="#{patientPescribe.onEdit}" update=":form1:messages" /> 
+                                        <p:ajax event="rowEditCancel" listener="#{patientPescribe.onCancel}" update=":form1:messages" />
+
+                                        <p:column>
+                                            <f:facet name="header"> 
+                                                <h:outputText value="Medicine Name" /> 
+                                            </f:facet>
+                                            <p:cellEditor> 
+                                                <f:facet name="output"> 
+                                                    <h:outputText value="#{o.med_name}" /> 
+                                                </f:facet> 
+                                                <f:facet name="input"> 
+                                                    <p:inputText value="#{o.med_name}" style="width:100%"/> 
+                                                </f:facet> 
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column>
+                                            <f:facet name="header"> 
+                                                <h:outputText value="Douse" /> 
+                                            </f:facet>
+                                            <p:cellEditor> 
+                                                <f:facet name="output"> 
+                                                    <h:outputText value="#{o.douse}" /> 
+                                                </f:facet> 
+                                                <f:facet name="input"> 
+                                                    <p:inputText value="#{o.douse}" style="width:100%"/> 
+                                                </f:facet> 
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column>
+                                            <f:facet name="header"> 
+                                                <h:outputText value="Taking Schedule" /> 
+                                            </f:facet>
+                                            <p:cellEditor> 
+                                                <f:facet name="output"> 
+                                                    <h:outputText value="#{o.taking_schedule}" /> 
+                                                </f:facet> 
+                                                <f:facet name="input"> 
+                                                    <p:inputText value="#{o.taking_schedule}" style="width:100%"/> 
+                                                </f:facet> 
+                                            </p:cellEditor>
+                                        </p:column>
+                                        <p:column headerText="Options" style="width:50px"> 
+                                            <p:rowEditor /> 
+                                        </p:column>
+
+                                    </p:dataTable></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center"><p:commandButton value="Save " action="#{patientPescribe.save()}" update="messages"/></td>
+                            </tr>
+                        </table>
+                    </center>
+                  
+                </h:form>
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </body>
+</html>

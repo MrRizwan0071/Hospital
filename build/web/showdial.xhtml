@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+    <body>
+
+        <ui:composition template="./PatientTam.xhtml">
+            
+            <ui:define name="content">
+
+                <h:form  id="dt" style="margin-top: 70px">
+                    <center>  <p:outputLabel value="Patient's Report" style="font-size: 20pt" /></center>
+                    <p:spacer height="50px"/>
+
+                </h:form >
+
+                <center><h:form>
+
+                        <f:facet name="header">Patient's Report</f:facet>         
+
+                   </h:form>
+                    <!-- Dialog !-->
+                    <h:form>
+                        <p:commandButton id="showDialogButton" type="button" value="Show" onclick="dlg.show()" />  
+                    </h:form>
+                    <p:dialog header="Enter patientid" widgetVar="dlg" resizable="false"> 
+
+                        <h:form id="form">  
+
+                            <h:panelGrid columns="2" style="margin-bottom:10px">  
+                                <h:outputLabel for="firstname" value="id:" />  
+                                <p:inputText id="firstname" value="#{report.pat_id}" /> 
+                                <p:tooltip for="firstname" value="Enter your id" showEffect="clip" hideEffect="explode" style="font-style: italic"/>  
+
+                            </h:panelGrid>  
+
+                            <p:commandButton id="submitButton" value="Submit" update=":display"  actionListener="#{report.etPort()}" oncomplete=":dlg.hide();"  ajax="false"/>  
+
+                        </h:form>  
+                    </p:dialog>  
+
+                    <p:outputPanel id="display" style="display:block;margin-top:10px;"  >  
+
+
+                        <h:dataTable  value="#{report.dt}" var="item" border="2" id="repor" >
+
+                            <h:column>
+                                <f:facet name="header">patient-id</f:facet>
+                                #{item.pat_id}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Test Name</f:facet>
+                                #{item.test}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Test Report</f:facet>
+                                #{item.repo}
+                            </h:column>
+
+
+                            <h:column>
+                                <f:facet name="header">Report Date</f:facet>
+                                #{item.date}
+                            </h:column>
+                        </h:dataTable>  
+
+
+                    </p:outputPanel>         <!-- Dialog !-->
+
+                </center>
+
+
+
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </body>
+</html>

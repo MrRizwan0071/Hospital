@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplateForHealthCare.xhtml">
+
+            <ui:define name="content">
+              <h:form id="form2">
+            <center>
+                <p:growl id="messages" showDetail="true"/>
+                
+                    <p:panelGrid columns="2">
+                         <p:outputLabel value="Doctor name"/>
+                        <p:selectOneMenu id="doctor_name" style="width:160px;" value="#{doctorSchedule.doctor_name}">
+                            <f:selectItem itemLabel="--Select--"/>
+                            <f:selectItems value="#{doctorSchedule.doctorName}"/>
+                            <f:ajax event="change" listener="#{doctorSchedule.selectDctorName()}" render="doctor_name"/>
+                        </p:selectOneMenu>
+                         
+                          <p:outputLabel value="Doctor Schedule"/>
+                          <p:selectOneMenu value="#{doctorSchedule.doctor_sch_time}" id="doctor_sch_time" style="width: 160px" editable="true" >
+                              <f:selectItem itemLabel="--Select--"/>
+                              <f:selectItems value="#{doctorSchedule.doctor_sch}"/>
+                        </p:selectOneMenu>
+                          
+                            <p:outputLabel value="Doctor Schedule Day"/>
+                            <p:selectOneMenu value="#{doctorSchedule.doctor_sch_day}" id="doctor_sch_day" style="width: 160px" editable="true" >
+                              <f:selectItem itemLabel="--Select--"/>
+                              <f:selectItems value="#{doctorSchedule.doctor_sch_da}"/>
+                              </p:selectOneMenu>
+                              <p:outputLabel value="Doctor Fee"/>
+                              <p:inputText id="doctor_fee" value="#{doctorSchedule.doctor_fee}"/>
+                              <p:commandButton value="Save" action="#{doctorSchedule.save()}" update="messages"/>
+                    </p:panelGrid>
+          
+
+            </center>
+        </h:form>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
